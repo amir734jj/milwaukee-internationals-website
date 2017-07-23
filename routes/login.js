@@ -1,6 +1,6 @@
+var authentication = require('../modules/authentication');
 var express = require('express');
 var router = express.Router();
-var authentication = require('../modules/authentication');
 
 /* GET login page. */
 router.get('/', function(req, res, next) {

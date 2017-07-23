@@ -1,11 +1,11 @@
+var authentication = require('../modules/authentication');
 var express = require('express');
 var router = express.Router();
-var authentication = require('../modules/authentication');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   authentication(req, function loggedIn() {
-    router.userCtrl.getAllUsers((user) => {
+    router.userCtrl.getAllUsers((users) => {
       res.render('users', {
         'users': users
       });

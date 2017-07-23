@@ -1,3 +1,4 @@
+var authentication = require('../modules/authentication');
 var express = require('express');
 var router = express.Router();
 

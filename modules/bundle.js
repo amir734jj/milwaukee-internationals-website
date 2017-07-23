@@ -7,7 +7,8 @@ module.exports = function(app, expressBundles) {
     bundles: {
       'bundle.css': [
         'css/bootstrap.css',
-        'css/bootstrap-theme.css'
+        'css/bootstrap-theme.css',
+        'css/style.css'
       ],
       'bundle.js': [
         'js/jquery.js',
