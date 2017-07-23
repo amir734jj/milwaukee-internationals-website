@@ -1,0 +1,25 @@
+var express = require('express');
+var router = express.Router();
+var authentication = require('../modules/authentication');
+
+/* GET login page. */
+router.get('/', function(req, res, next) {
+  authentication(req, null, function loggedOut() {
+    res.render('login');
+  });
+});
+
+router.post('/', function(req, res, next) {
+  authentication(req, null, function loggedOut() {
+    router.userCtrl.containsUser(req.body, function successCallback(user) {
+      req.session.user = user;
+      res.redirect("/");
+    }, function failCallback() {
+      res.render('login', {
+        note: "Invalid username or password! please try again"
+      });
+    });
+  });
+});
+
+module.exports = router;
