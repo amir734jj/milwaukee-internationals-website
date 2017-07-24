@@ -12,7 +12,9 @@ module.exports = function(app, expressBundles) {
       ],
       'bundle.js': [
         'js/jquery.js',
-        'js/bootstrap.js'
+        'js/bootstrap.js',
+        'js/angular.js',
+        'js/script.js'
       ]
     }
   }));
