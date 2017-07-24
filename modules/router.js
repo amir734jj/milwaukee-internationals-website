@@ -4,6 +4,7 @@ var routes = function(app, databaseModels, db) {
   var login = require('../routes/login');
   var logout = require('../routes/logout');
   var users = require('../routes/users');
+  var registerForTour = require('../routes/registerForTour');
 
   var userCtrl = require('../models/userCtrl')(databaseModels.userModel, db, [login, register, users]);
 
@@ -18,6 +19,7 @@ var routes = function(app, databaseModels, db) {
   app.use('/register', register);
   app.use('/login', login);
   app.use('/logout', logout);
+  app.use('/registerForTour', registerForTour);
 
   return this;
 };
