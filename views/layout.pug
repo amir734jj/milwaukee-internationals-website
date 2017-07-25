@@ -21,15 +21,15 @@ html(lang="en")
           a.navbar-brand(href='/') Social network
         #myNavbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active
+            li(class="active")
               a(href='/') Home
             li
               a(href='/users') Users
             li
-              a(href='/registerForTour') Register for tour of Milwaukee
+              a(href='/register-for-tour') Register for tour of Milwaukee
             - if (user)
               li
-                a(href='/registerForTour/list')
+                a(href='/register-for-tour/list')
                   span.glyphicon.glyphicon-list
                   |  list of students
           ul.nav.navbar-nav.navbar-right

@@ -4,13 +4,17 @@ var router = express.Router();
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
-  authentication(req, null, function loggedOut() {
+  authentication(req, function loggedIn() {
+    res.redirect("/");
+  }, function loggedOut() {
     res.render('register');
   });
 });
 
 router.post('/', function(req, res, next) {
-  authentication(req, null, function loggedOut() {
+  authentication(req, function loggedIn() {
+    res.redirect("/");
+  }, function loggedOut() {
     router.userCtrl.addUser(req.body, function successCallback(user) {
       res.redirect("/login");
     }, function failCallback() {

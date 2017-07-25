@@ -20,7 +20,7 @@ var routes = function(app, databaseModels, db) {
   app.use('/register', register);
   app.use('/login', login);
   app.use('/logout', logout);
-  app.use('/registerForTour', registerForTour);
+  app.use('/register-for-tour', registerForTour);
 
   return this;
 };

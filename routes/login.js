@@ -4,7 +4,9 @@ var router = express.Router();
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
-  authentication(req, null, function loggedOut() {
+  authentication(req, function loggedIn() {
+    res.redirect("/");
+  }, function loggedOut() {
     res.render('login');
   });
 });

@@ -1,7 +1,7 @@
 var _ = require('underscore');
 
 var isLoggedIn = function(req) {
-  return !_.isNull(req.session.user);
+  return !_.isNull(req.session.user) && !_.isUndefined(req.session.user);
 };
 
 module.exports = function(req, loggedInCallback, loggedOutCallback) {
