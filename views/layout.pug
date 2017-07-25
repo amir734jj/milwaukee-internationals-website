@@ -5,10 +5,10 @@ html(lang="en")
       | Milwaukee social network
 
     for name in bundles.emit('bundle.css')
-      link(rel='stylesheet', href=name)
+      link(rel='stylesheet', href="/"+name)
 
     for name in bundles.emit('bundle.js')
-      script(href='stylesheet', src=name)
+      script(href='stylesheet', src="/"+name)
 
   body(ng-app='myApp', ng-controller='myCtrl')
     nav.navbar.navbar-default
