@@ -7,6 +7,7 @@ var routes = function(app, databaseModels, db) {
   var registerForTour = require('../routes/registerForTour');
 
   var userCtrl = require('../models/userCtrl')(databaseModels.userModel, db, [login, register, users]);
+  var studentCtrl = require('../models/studentCtrl')(databaseModels.studentModel, db, [registerForTour]);
 
   /* order is important here */
   app.use(function(req, res, next) {

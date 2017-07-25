@@ -5,10 +5,10 @@ html(lang="en")
       | Milwaukee social network
 
     for name in bundles.emit('bundle.css')
-      link(rel='stylesheet', href=name)
+      link(rel='stylesheet', href="/"+name)
 
     for name in bundles.emit('bundle.js')
-      script(href='stylesheet', src=name)
+      script(href='stylesheet', src="/"+name)
 
   body(ng-app='myApp', ng-controller='myCtrl')
     nav.navbar.navbar-default
@@ -27,6 +27,11 @@ html(lang="en")
               a(href='/users') Users
             li
               a(href='/registerForTour') Register for tour of Milwaukee
+            - if (user)
+              li
+                a(href='/registerForTour/list')
+                  span.glyphicon.glyphicon-list
+                  |  list of students
           ul.nav.navbar-nav.navbar-right
             - if (user)
               li
