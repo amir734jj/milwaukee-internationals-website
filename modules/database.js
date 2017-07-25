@@ -1,5 +1,8 @@
 module.exports = function(db, sequelize) {
   var User = db.define("user", {
+    userId: {
+      type: sequelize.STRING
+    },
     firstName: {
       type: sequelize.STRING
     },
@@ -22,6 +25,9 @@ module.exports = function(db, sequelize) {
   });
 
   var Student = db.define("student", {
+    studentId: {
+      type: sequelize.STRING
+    },
     fullname: {
       type: sequelize.STRING
     },
@@ -47,12 +53,96 @@ module.exports = function(db, sequelize) {
     freezeTableName: true
   });
 
+  var Person = db.define("person", {
+    personId: {
+      type: sequelize.STRING
+    },
+    firstName: {
+      type: sequelize.STRING
+    },
+    lastName: {
+      type: sequelize.STRING
+    },
+    email: {
+      type: sequelize.STRING
+    },
+    phone: {
+      type: sequelize.STRING
+    },
+    address: {
+      type: sequelize.STRING
+    }
+  }, {
+    freezeTableName: true
+  });
+
+  var DriverDetail = db.define("driverDetail", {
+    personId: {
+      type: sequelize.STRING
+    },
+    driverId: {
+      type: sequelize.STRING
+    },
+    totalSeats: {
+      type: sequelize.STRING
+    },
+    seatsAvailable: {
+      type: sequelize.STRING
+    }
+  }, {
+    freezeTableName: true
+  });
+
+  var HostDetail = db.define("hostDetail", {
+    personId: {
+      type: sequelize.STRING
+    },
+    hostId: {
+      type: sequelize.STRING
+    },
+    maxGuests: {
+      type: sequelize.STRING
+    },
+    preference: {
+      type: sequelize.STRING
+    },
+  }, {
+    freezeTableName: true
+  });
+
+  var StudentDriverMapping = db.define("studentDriverMapping", {
+    studentId: {
+      type: sequelize.STRING
+    },
+    driverId: {
+      type: sequelize.STRING
+    }
+  }, {
+    freezeTableName: true
+  });
+
+  var DriverHostMapping = db.define("driverHostDetail", {
+    driverId: {
+      type: sequelize.STRING
+    },
+    hostId: {
+      type: sequelize.STRING
+    }
+  }, {
+    freezeTableName: true
+  });
+
   db.sync({
     force: false
   });
 
   return {
     'userModel': User,
-    'studentModel': Student
+    'studentModel': Student,
+    'personModel': Person,
+    'DriverDetailModel': DriverDetail,
+    'HostDetailModel': HostDetail,
+    'StudentDriverMappingModel': StudentDriverMapping,
+    'DriverHostMappingModel': DriverHostMapping
   };
 };

@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  
+
   form.form-horizontal(action="/login" method="post")
     .form-group
       label.control-label.col-sm-2(for='email') Email:
@@ -19,4 +19,4 @@ block content
             |  Remember me
     .form-group
       .col-sm-offset-2.col-sm-10
-        button.btn.btn-default(type='submit') Submit
+        button.btn.btn-primary(type='submit') Submit

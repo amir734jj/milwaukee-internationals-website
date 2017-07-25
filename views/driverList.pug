@@ -1,0 +1,30 @@
+extends layout
+
+block content
+.container.page-header
+  h2.text-danger.text-center
+    | List of Drivers
+
+  table.table.table-hover
+    thead
+      tr
+        th
+          | Driver ID
+        th
+          | Fullname
+        th
+          | Email
+        th
+          | Phone
+
+    each driver in drivers
+      tbody
+        tr
+          td
+            | #{driver.driverId}
+          td
+            | #{student.fullname}
+          td
+            | #{student.email}
+          td
+            | #{student.phone}
