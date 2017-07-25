@@ -1,21 +1,17 @@
 extends layout
 
 block content
-  img.img-responsive(src="images/tour-header.jpg")
-  
-  .container.page-header
-    h3
-      | 2017 Tour of Milwaukee Registeration
-    p
-      | Date: August 26, 2017
-    p
-      | Time: 12:00 noon
-    p
-      | Location: Union Ballroom
-    p
-      | For more information, send us a message on Milwaukee Internationals Facebook page or contact Marie Wilke <nmariesw@aol.com>.
+  img.img-responsive(src='images/tour-header.jpg')
 
-  form.form-horizontal(action="/register-for-tour" method="post")
+  .banner
+    ul.dl-horizontal
+      h3.text-center.banner-item 2017 Tour of Milwaukee Registeration
+      p.banner-item Date: August 26, 2017
+      p.banner-item Time: 12:00 noon
+      p.banner-item Location: Union Ballroom
+      p.banner-item For more information, send us a message on Milwaukee Internationals Facebook page or contact Marie Wilke <nmariesw@aol.com>.
+
+  form.form-horizontal(action='/register-for-tour' method='post')
     .form-group
       label.control-label.col-sm-3(for='fullname') Full Name:
       .col-sm-9
@@ -47,7 +43,8 @@ block content
     .form-group
       label.control-label.col-sm-3(for='interest') Tell us couple of your main interests?
       .col-sm-9
-        input#interest.form-control(type='text', name='interest', placeholder='We can try to connect you with people having similar interests', required)  
+        tags-input(ng-model='tags', use-strings='true', placeholder='we can try to connect you with people having similar interests')
+        input#interest.form-control(type='hidden', name='interest', value='{{tags}}', required)
 
     .form-group
       .col-sm-offset-3.col-sm-10

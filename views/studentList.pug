@@ -4,35 +4,23 @@ block content
   table.table.table-hover
     thead
       tr
-        th
-          | Date
-        th
-          | Fullname
-        th
-          | major
-        th
-          | Email
-        th
-          | Phone
-        th
-          | country
-        th
-          | interest
+        th Date
+        th Fullname
+        th major
+        th Email
+        th Phone
+        th country
+        th interest
           
     each student in students
       tbody
         tr
-          td
-            | #{student.date}
-          td
-            | #{student.fullname}
-          td
-            | #{student.major}
-          td
-            | #{student.email}
-          td
-            | #{student.phone}
-          td
-            | #{student.country}
-          td
-            | #{student.interest}
+          td= student.date
+          td= student.fullname
+          td= student.major
+          td= student.email
+          td= student.phone
+          td= student.country
+          td.interest-list
+            each interest in student.interest
+                span.label.label-primary.interest-list-item= interest

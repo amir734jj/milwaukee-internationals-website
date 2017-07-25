@@ -8,12 +8,17 @@ module.exports = function(app, expressBundles) {
       'bundle.css': [
         'css/bootstrap.css',
         'css/bootstrap-theme.css',
+        'css/ng-tags-input.css',
+        'css/ng-tags-input.bootstrap.css',
+        'css/select.css',
         'css/style.css'
       ],
       'bundle.js': [
         'js/jquery.js',
         'js/bootstrap.js',
         'js/angular.js',
+        'js/ng-tags-input.js',
+        'js/select.js',
         'js/script.js'
       ]
     }

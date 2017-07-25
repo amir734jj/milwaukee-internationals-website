@@ -1,8 +1,28 @@
 body {
-  background-color: #FFFBFF;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #FFFBFF;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+.interest-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.interest-list-item {
+    margin: 5px !important;
+}
+
+.banner {
+    width: 80%;
+    font-size: 150% !important;
+    margin-bottom: 50px !important;
+    margin-top: 50px !important;
+}
+
+p.banner-item {
+    font-weight: 300 !important;
 }

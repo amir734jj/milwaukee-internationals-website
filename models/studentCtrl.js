@@ -14,7 +14,7 @@ module.exports = function(studentModel, db, injectTo) {
           phone: attr.phone,
           country: attr.country,
           interest: attr.interest,
-          date: Date.now()
+          date: new Date().toString()
         })
         .done((student, created) => {
           successCallback(student);
