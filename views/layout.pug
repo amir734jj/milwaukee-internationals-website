@@ -3,12 +3,14 @@ html(lang="en")
   head
     title
       | Milwaukee social network
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
 
-    for name in bundles.emit('bundle.css')
-      link(rel='stylesheet', href="/"+name)
+  for name in bundles.emit('bundle.css')
+    link(rel='stylesheet', href="/"+name)
 
-    for name in bundles.emit('bundle.js')
-      script(href='stylesheet', src="/"+name)
+  for name in bundles.emit('bundle.js')
+    script(href='stylesheet', src="/"+name)
 
   body(ng-app='myApp', ng-controller='myCtrl')
     nav.navbar.navbar-default
