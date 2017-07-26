@@ -12,6 +12,8 @@ var hash = require('sha1');
 var expressBundles = require('express-bundles');
 var mailer = require('nodemailer');
 
+var app = express();
+
 // use SMTP protocol to send Email
 var smtpTransport = mailer.createTransport({
     service: "Gmail",
@@ -21,39 +23,44 @@ var smtpTransport = mailer.createTransport({
     }
 });
 
-
 var rootURL = "http://milwaukee-internationals.herokuapp.com";
 global.mailService = require('./modules/email.js')(smtpTransport, rootURL);
 
+var db;
 
-// initialize database with SQLite
-// var db = new sequelize("database", "username", "password", {
-//     host: "localhost",
-//     dialect: "sqlite",
-//     pool: {
-//         max: 1,
-//         min: 0,
-//         idle: 10000
-//     },
-//     storage: "./database/db.sqlite",
-//     logging: false
-// });
-
-// initialize database with mySQL
-var db = new sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    protocol: 'postgres',
-    dialectOptions: {
-        ssl: true
-    }
-});
+if (app.settings.env === "development") {
+    // initialize database with SQLite
+    db = new sequelize("database", "username", "password", {
+        host: "localhost",
+        dialect: "sqlite",
+        pool: {
+            max: 1,
+            min: 0,
+            idle: 10000
+        },
+        storage: "./database/db.sqlite",
+        logging: false
+    });
+} else if (app.settings.env === "production") {
+    // initialize database with postgres
+    var db = new sequelize(process.env.DATABASE_URL, {
+        dialect: 'postgres',
+        protocol: 'postgres',
+        dialectOptions: {
+            ssl: true
+        }
+    });
+}
 
 var databaseModels = require('./modules/database.js')(db, sequelize);
 
-var app = express();
 
 app.get("/info", function(req, res, next) {
-    res.send(app.settings.env);
+    res.json({
+        "envirement": app.settings.env,
+        "db": JSON.stringify(db, null, 2),
+        "app": JSON.stringify(app, null, 2)
+    });
 });
 
 // view engine setup
