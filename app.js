@@ -25,29 +25,29 @@ var rootURL = "http://milwaukee-internationals.herokuapp.com";
 global.mailService = require('./modules/email.js')(smtpTransport, rootURL);
 
 // initialize database with SQLite
-// var db = new sequelize("database", "username", "password", {
-//   host: "localhost",
-//   dialect: "sqlite",
-//   pool: {
-//     max: 1,
-//     min: 0,
-//     idle: 10000
-//   },
-//   storage: "./database/db.sqlite",
-//   logging: false
-// });
+var db = new sequelize("database", "username", "password", {
+  host: "localhost",
+  dialect: "sqlite",
+  pool: {
+    max: 1,
+    min: 0,
+    idle: 10000
+  },
+  storage: "./database/db.sqlite",
+  logging: false
+});
 
 // initialize database with mySQL
-var db = new sequelize("hesaguua_social", "hesaguua_admin", "a1b1c1xxx", {
-  host: "localhost",
-  dialect: "mysql",
-  port: 3306,
-  pool: {
-    maxConnections: 5,
-    maxIdleTime: 30
-  },
-  logging: true
-});
+// var db = new sequelize("hesaguua_social", "hesaguua_admin", "a1b1c1xxx", {
+//   host: "hesamian.com",
+//   dialect: "mysql",
+//   port: 3306,
+//   pool: {
+//     maxConnections: 5,
+//     maxIdleTime: 30
+//   },
+//   logging: true
+// });
 
 var databaseModels = require('./modules/database.js')(db, sequelize);
 
