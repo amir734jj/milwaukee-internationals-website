@@ -19,7 +19,7 @@ var smtpTransport = mailer.createTransport({
     service: "Gmail",
     auth: {
         user: "uwmnow.cs@gmail.com",
-        pass: "uwmnow2015"
+        pass: "uwmnow2017"
     },
     tls: {
         // do not fail on invalid certs
