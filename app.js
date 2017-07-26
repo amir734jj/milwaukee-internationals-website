@@ -25,6 +25,7 @@ var smtpTransport = mailer.createTransport({
 var rootURL = "http://milwaukee-internationals.herokuapp.com";
 global.mailService = require('./modules/email.js')(smtpTransport, rootURL);
 
+
 // initialize database with SQLite
 // var db = new sequelize("database", "username", "password", {
 //     host: "localhost",
@@ -50,6 +51,10 @@ var db = new sequelize(process.env.DATABASE_URL, {
 var databaseModels = require('./modules/database.js')(db, sequelize);
 
 var app = express();
+
+app.get("/info", function(req, res, next) {
+    res.send(app.settings.env);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
