@@ -26,17 +26,17 @@ var rootURL = "http://milwaukee-internationals.herokuapp.com";
 global.mailService = require('./modules/email.js')(smtpTransport, rootURL);
 
 // initialize database with SQLite
-var db = new sequelize("database", "username", "password", {
-    host: "localhost",
-    dialect: "sqlite",
-    pool: {
-        max: 1,
-        min: 0,
-        idle: 10000
-    },
-    storage: "./database/db.sqlite",
-    logging: false
-});
+// var db = new sequelize("database", "username", "password", {
+//     host: "localhost",
+//     dialect: "sqlite",
+//     pool: {
+//         max: 1,
+//         min: 0,
+//         idle: 10000
+//     },
+//     storage: "./database/db.sqlite",
+//     logging: false
+// });
 
 // initialize database with mySQL
 var db = new sequelize(process.env.DATABASE_URL, {
