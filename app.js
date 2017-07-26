@@ -57,9 +57,7 @@ var databaseModels = require('./modules/database.js')(db, sequelize);
 
 app.get("/info", function(req, res, next) {
     res.json({
-        "envirement": app.settings.env,
-        "db": JSON.stringify(db, null, 2),
-        "app": JSON.stringify(app, null, 2)
+        "envirement": app.settings.env
     });
 });
 

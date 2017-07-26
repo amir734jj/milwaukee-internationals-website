@@ -4,11 +4,12 @@ html(lang="en")
     title
       | Milwaukee Internationals
 
-    for name in bundles.emit('bundle.css')
-      link(rel='stylesheet', href="/"+name)
+    - if (bundles)
+      for name in bundles.emit('bundle.css')
+        link(rel='stylesheet', href="/"+name)
 
-    for name in bundles.emit('bundle.js')
-      script(href='stylesheet', src="/"+name)
+      for name in bundles.emit('bundle.js')
+        script(href='stylesheet', src="/"+name)
 
   body(ng-app='myApp', ng-controller='myCtrl')
     nav.navbar.navbar-default
