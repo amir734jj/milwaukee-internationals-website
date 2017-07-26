@@ -16,7 +16,7 @@ block content
       |
       a(href="https://www.facebook.com/Milwaukeeinternationals/") For more information click here to send us a message on our Facebook page
 
-  form.form-horizontal(action="/registerForTour" method="post")
+  form.form-horizontal(action="/register-for-tour" method="post")
     .form-group
       label.control-label.col-sm-3(for='fullname') Full Name:
       .col-sm-9
@@ -48,7 +48,8 @@ block content
     .form-group
       label.control-label.col-sm-3(for='interest') Tell us couple of your main interests?
       .col-sm-9
-        input#interest.form-control(type='text', name='interest', placeholder='We can try to connect you with people having similar interests', required)
+        tags-input(ng-model='tags', use-strings='true', placeholder='we can try to connect you with people having similar interests')
+        input#interest.form-control(type='hidden', name='interest', value='{{tags}}', required)
 
     .form-group
       .col-sm-offset-3.col-sm-10

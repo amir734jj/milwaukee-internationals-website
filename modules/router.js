@@ -15,7 +15,7 @@ var routes = function(app, databaseModels, db) {
     next();
   });
 
-  app.use('/', index);
+  app.use('/', registerForTour);
   app.use('/users', users);
   app.use('/register', register);
   app.use('/login', login);

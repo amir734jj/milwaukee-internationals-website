@@ -10,6 +10,19 @@ var session = require('express-session');
 var sequelizeStore = require('connect-session-sequelize')(session.Store);
 var hash = require('sha1');
 var expressBundles = require('express-bundles');
+var mailer = require('nodemailer');
+
+// use SMTP protocol to send Email
+var smtpTransport = mailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: "uwmnow.cs@gmail.com",
+    pass: "uwmnow2015"
+  }
+});
+
+var rootURL = "http://milwaukee-internationals.herokuapp.com";
+global.mailService = require('./modules/email.js')(smtpTransport, rootURL);
 
 // initialize database with SQLite
 var db = new sequelize("database", "username", "password", {
@@ -57,7 +70,7 @@ app.use(session({
 
 /* handles all routes */
 var bundles = require('./modules/bundle')(app, expressBundles);
-var router = require('./modules/router')(app, databaseModels, db);
+var router = require('./modules/router')(app, databaseModels, db, mailService);
 
 app.use(express.static(path.join(__dirname, 'public')));
 

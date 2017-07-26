@@ -23,13 +23,14 @@ html(lang="en")
           ul.nav.navbar-nav
             li.active
               a(href='/') Home
-            li
-              a(href='/users') Users
-            li
-              a(href='/registerForTour') Register for Tour of Milwaukee
             - if (user)
               li
-                a(href='/registerForTour/list')
+                a(href='/users') Users
+            li
+              a(href='/register-for-tour') Register for Tour of Milwaukee
+            - if (user)
+              li
+                a(href='/register-for-tour/list')
                   span.glyphicon.glyphicon-list
                   |  list of students
               li

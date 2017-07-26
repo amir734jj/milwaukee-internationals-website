@@ -11,9 +11,14 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/confirmation', function(req, res, next) {
+  res.render('registrationConfirmation');
+});
+
 router.post('/', function(req, res, next) {
   router.studentCtrl.addStudent(req.body, function successCallback(student) {
-    res.redirect("/");
+    global.mailService(req.body.email, req.body);
+    res.redirect(req.originalUrl + "/confirmation");
   });
 });
 
@@ -22,9 +27,9 @@ router.get('/list', function(req, res, next) {
     router.studentCtrl.getAllStudents(function successCallback(students) {
       res.render("studentList", {
         "students": students.map(student => {
-            student.interest = JSON.parse(student.interest);
-            student.date = moment(new Date(student.date)).format('MM-DD-YYYY, h:mm:ss a');
-            return student;
+          student.interests = JSON.parse(student.interests);
+          student.date = moment(new Date(student.date)).format('MM-DD-YYYY, h:mm:ss a');
+          return student;
         })
       });
     });

@@ -43,7 +43,7 @@ module.exports = function(db, sequelize) {
     country: {
       type: sequelize.STRING
     },
-    interest: {
+    interests: {
       type: sequelize.STRING
     },
     date: {
@@ -133,7 +133,7 @@ module.exports = function(db, sequelize) {
   });
 
   db.sync({
-    force: false
+    force: true
   });
 
   return {

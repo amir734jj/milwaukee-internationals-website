@@ -13,7 +13,7 @@ module.exports = function(studentModel, db, injectTo) {
           email: attr.email,
           phone: attr.phone,
           country: attr.country,
-          interest: attr.interest,
+          interests: attr.interests,
           date: new Date().toString()
         })
         .done((student, created) => {
