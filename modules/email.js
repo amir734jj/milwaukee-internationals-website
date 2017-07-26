@@ -23,6 +23,11 @@ module.exports = function(smtpTransport, rootURL) {
         console.log("Email service is broken!" + error);
       }
 
+      console.log("##########---EMAIL---###########");
+      console.log(email);
+      console.log(response);
+      console.log("##########---EMAIL---###########");
+
       smtpTransport.close();
     });
   }
