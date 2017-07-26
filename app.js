@@ -14,11 +14,11 @@ var mailer = require('nodemailer');
 
 // use SMTP protocol to send Email
 var smtpTransport = mailer.createTransport({
-  service: "Gmail",
-  auth: {
-    user: "uwmnow.cs@gmail.com",
-    pass: "uwmnow2015"
-  }
+    service: "Gmail",
+    auth: {
+        user: "uwmnow.cs@gmail.com",
+        pass: "uwmnow2015"
+    }
 });
 
 
@@ -27,28 +27,25 @@ global.mailService = require('./modules/email.js')(smtpTransport, rootURL);
 
 // initialize database with SQLite
 var db = new sequelize("database", "username", "password", {
-  host: "localhost",
-  dialect: "sqlite",
-  pool: {
-    max: 1,
-    min: 0,
-    idle: 10000
-  },
-  storage: "./database/db.sqlite",
-  logging: false
+    host: "localhost",
+    dialect: "sqlite",
+    pool: {
+        max: 1,
+        min: 0,
+        idle: 10000
+    },
+    storage: "./database/db.sqlite",
+    logging: false
 });
 
 // initialize database with mySQL
-// var db = new sequelize("hesaguua_social", "hesaguua_admin", "a1b1c1xxx", {
-//   host: "hesamian.com",
-//   dialect: "mysql",
-//   port: 3306,
-//   pool: {
-//     maxConnections: 5,
-//     maxIdleTime: 30
-//   },
-//   logging: true
-// });
+var db = new sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+        ssl: true
+    }
+});
 
 var databaseModels = require('./modules/database.js')(db, sequelize);
 
@@ -63,22 +60,22 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
 app.use(cookieParser());
 
 //	sequelize ORM session store
 app.use(session({
-  secret: "this is a secret here!",
-  store: new sequelizeStore({
-    "db": db
-  }),
-  proxy: true,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 60 * 60 * 1000
-  }
+    secret: "this is a secret here!",
+    store: new sequelizeStore({
+        "db": db
+    }),
+    proxy: true,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 60 * 60 * 1000
+    }
 }));
 
 /* handles all routes */
@@ -89,22 +86,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 app.locals.pretty = true;
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
