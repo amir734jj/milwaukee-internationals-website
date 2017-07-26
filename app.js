@@ -43,7 +43,7 @@ if (app.settings.env === "development") {
     });
 } else if (app.settings.env === "production") {
     // initialize database with postgres
-    var db = new sequelize(process.env.DATABASE_URL, {
+    db = new sequelize(process.env.DATABASE_URL, {
         dialect: 'postgres',
         protocol: 'postgres',
         dialectOptions: {
