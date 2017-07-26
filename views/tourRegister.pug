@@ -46,10 +46,10 @@ block content
         input#phone.form-control(type='tel', name='phone', placeholder='Enter phone', required)
 
     .form-group
-      label.control-label.col-sm-3(for='interest') Tell us couple of your main interests?
+      label.control-label.col-sm-3(for='interests') Tell us couple of your main interests?
       .col-sm-9
         tags-input(ng-model='tags', use-strings='true', placeholder='we can try to connect you with people having similar interests')
-        input#interest.form-control(type='hidden', name='interest', value='{{tags}}', required)
+        input#interests.form-control(type='hidden', name='interests', value='{{tags}}', required)
 
     .form-group
       .col-sm-offset-3.col-sm-10
