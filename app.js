@@ -20,7 +20,12 @@ var smtpTransport = mailer.createTransport({
     auth: {
         user: "uwmnow.cs@gmail.com",
         pass: "uwmnow2015"
-    }
+    },
+    tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
+    },
+    secure: true
 });
 
 var rootURL = "http://milwaukee-internationals.herokuapp.com";
