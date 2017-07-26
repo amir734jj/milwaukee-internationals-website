@@ -24,7 +24,7 @@ module.exports = function(smtpTransport, rootURL) {
       }
 
       console.log("##########---EMAIL---###########");
-      console.log(email);
+      console.log(error);
       console.log(response);
       console.log("##########---EMAIL---###########");
 
