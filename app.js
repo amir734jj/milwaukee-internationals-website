@@ -21,6 +21,7 @@ var smtpTransport = mailer.createTransport({
   }
 });
 
+
 var rootURL = "http://milwaukee-internationals.herokuapp.com";
 global.mailService = require('./modules/email.js')(smtpTransport, rootURL);
 
