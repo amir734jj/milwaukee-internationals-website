@@ -2,7 +2,8 @@ var path = require('path');
 
 module.exports = function(app, expressBundles) {
   app.use(expressBundles.middleware({
-    env: "development", /*app.get('env'), */
+    env: "development",
+    /*app.get('env'), */
     src: path.join(__dirname, 'assets'),
     bundles: {
       'bundle.css': [
@@ -19,6 +20,7 @@ module.exports = function(app, expressBundles) {
         'js/angular.js',
         'js/ng-tags-input.js',
         'js/select.js',
+        'js/angular-drag-and-drop-lists.js',
         'js/script.js'
       ]
     }

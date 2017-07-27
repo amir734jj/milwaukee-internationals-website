@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  - if (students.length)
+    table.table.table-hover
+      thead
+        tr
+          th Fullname
+          th Email
+          th Attendance
+          th Driver
+
+      each student in students
+        tbody
+          tr
+            td= student.fullname
+            td= student.email
+            td
+              .checkbox
+                label
+                  input#max-guests.form-control(type='checkbox', name='maxGuests', value='#{student.attendance}')
+            td
+              select#role.form-control(name='role', ng-model="role")
+                each driver in drivers
+                  option(value=driver.driverId)
+                    | #{driver.fullname} - #{driver.seats}
+            
+  - else
+    .alert.alert-info
+      strong
+        | Sorry!
+      |  No one has registered yet!

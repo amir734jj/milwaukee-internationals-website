@@ -1,31 +1,30 @@
 extends layout
 
 block content
+  .container.page-header
+    h2.text-danger.text-center
+      | List of Hosts
 
-.container.page-header
-  h2.text-danger.text-center
-    | List of Hosts
-
-  table.table.table-hover
-    thead
-      tr
-        th
-          | Host ID
-        th
-          | Fullname
-        th
-          | Email
-        th
-          | Phone
-
-    each host in hosts
-      tbody
+    table.table.table-hover
+      thead
         tr
-          td
-            | #{host.hostId}
-          td
-            | #{host.fullname}
-          td
-            | #{host.email}
-          td
-            | #{host.phone}
+          th
+            | Host ID
+          th
+            | Fullname
+          th
+            | Email
+          th
+            | Phone
+
+      each host in hosts
+        tbody
+          tr
+            td
+              | #{host.displayId}
+            td
+              | #{host.fullname}
+            td
+              | #{host.email}
+            td
+              | #{host.phone}

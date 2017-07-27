@@ -11,7 +11,7 @@ html(lang="en")
       for name in bundles.emit('bundle.js')
         script(href='stylesheet', src="/"+name)
 
-  body(ng-app='myApp', ng-controller='myCtrl')
+  body(ng-app='myApp')
     nav.navbar.navbar-default
       .container-fluid
         .navbar-header
@@ -34,11 +34,17 @@ html(lang="en")
                 a(href='/register-for-tour/list')
                   |  list of students
               li
-                a(href='/drivers/list')
+                a(href='/register-person')
+                  |  Register Person
+              li
+                a(href='/driver-list')
                   |  Drivers
               li
-                a(href='/hosts/list')
-                  |  Hosts
+                a(href='/host-list')
+                  |  Hosts  
+              li
+                a(href='/driver-mapping')
+                  |  Driver mapping
           ul.nav.navbar-nav.navbar-right
             - if (user)
               li

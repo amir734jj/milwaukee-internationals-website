@@ -1,55 +1,5 @@
 extends layout
 
 block content
-  img.img-responsive(src="images/tour-header.jpg")
-
-  .container.page-header
-    h2.text-danger.text-center
-      | 2017 Tour of Milwaukee Registeration
-    h4.text-center
-      | Date: August 26, 2017
-    h4.text-center
-      | Time: 12:00 noon
-    h4.text-center
-      | Location: Union Ballroom
-    p.text-center.bg-info
-      |
-      a(href="https://www.facebook.com/Milwaukeeinternationals/") For more information click here to send us a message on our Facebook page
-
-  form.form-horizontal(action="/registerForTour" method="post")
-    .form-group
-      label.control-label.col-sm-3(for='fullname') Full Name:
-      .col-sm-9
-        input#fullname.form-control(type='text', name='fullname', placeholder='Enter your fullname', required)
-
-    .form-group
-      label.control-label.col-sm-3(for='fullname') Major:
-      .col-sm-9
-        input#major.form-control(type='text', name='major', placeholder='Enter your major', required)
-
-    .form-group
-      label.control-label.col-sm-3(for='country') Country:
-      .col-sm-9
-        select#country.form-control(name='country')
-          each country in listOfCountries
-            option(value=country)
-              | #{country}
-
-    .form-group
-      label.control-label.col-sm-3(for='email') Email:
-      .col-sm-9
-        input#email.form-control(type='email', name='email', placeholder='Enter email', required)
-
-    .form-group
-      label.control-label.col-sm-3(for='phone') Phone:
-      .col-sm-9
-        input#phone.form-control(type='tel', name='phone', placeholder='Enter phone', required)
-
-    .form-group
-      label.control-label.col-sm-3(for='interest') Tell us couple of your main interests?
-      .col-sm-9
-        input#interest.form-control(type='text', name='interest', placeholder='We can try to connect you with people having similar interests', required)
-
-    .form-group
-      .col-sm-offset-3.col-sm-10
-        button.btn.btn-primary(class=btn-lg  type='submit') Register for Tour
+  div(ng-controller='driverMappingCtrl')
+    include bad.html

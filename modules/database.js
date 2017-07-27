@@ -48,6 +48,13 @@ module.exports = function(db, sequelize) {
     },
     date: {
       type: sequelize.STRING
+    },
+    attendance: {
+      type: sequelize.BOOLEAN,
+      defaultValue: false
+    },
+    driverId: {
+      type: sequelize.STRING
     }
   }, {
     freezeTableName: true
@@ -55,12 +62,11 @@ module.exports = function(db, sequelize) {
 
   var Person = db.define("person", {
     personId: {
-      type: sequelize.STRING
+      primaryKey: true,
+      type: sequelize.UUID,
+      defaultValue: sequelize.UUIDV4
     },
-    firstName: {
-      type: sequelize.STRING
-    },
-    lastName: {
+    fullname: {
       type: sequelize.STRING
     },
     email: {
@@ -71,33 +77,13 @@ module.exports = function(db, sequelize) {
     },
     address: {
       type: sequelize.STRING
-    }
-  }, {
-    freezeTableName: true
-  });
-
-  var DriverDetail = db.define("driverDetail", {
-    personId: {
-      type: sequelize.STRING
     },
-    driverId: {
-      type: sequelize.STRING
+    displayId: {
+      type: sequelize.INTEGER,
+      defaultValue: 1,
+      autoIncrement: true
     },
     totalSeats: {
-      type: sequelize.STRING
-    },
-    seatsAvailable: {
-      type: sequelize.STRING
-    }
-  }, {
-    freezeTableName: true
-  });
-
-  var HostDetail = db.define("hostDetail", {
-    personId: {
-      type: sequelize.STRING
-    },
-    hostId: {
       type: sequelize.STRING
     },
     maxGuests: {
@@ -106,6 +92,9 @@ module.exports = function(db, sequelize) {
     preference: {
       type: sequelize.STRING
     },
+    role: {
+      type: sequelize.STRING
+    }
   }, {
     freezeTableName: true
   });
@@ -140,8 +129,8 @@ module.exports = function(db, sequelize) {
     'userModel': User,
     'studentModel': Student,
     'personModel': Person,
-    'DriverDetailModel': DriverDetail,
-    'HostDetailModel': HostDetail,
+    // 'DriverDetailModel': DriverDetail,
+    // 'HostDetailModel': HostDetail,
     'StudentDriverMappingModel': StudentDriverMapping,
     'DriverHostMappingModel': DriverHostMapping
   };

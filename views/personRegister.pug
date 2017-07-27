@@ -1,13 +1,14 @@
 extends layout
 
 block content
+
   img.img-responsive(src="images/tour-header.jpg")
 
   .container.page-header
     h2.text-danger.text-center
       | Driver-Host-Volunteer Registeration
 
-  form.form-horizontal(action="/" method="post")
+  form.form-horizontal(action="/register-person" method="post")
     .form-group
       label.control-label.col-sm-3(for='fullname') Full Name:
       .col-sm-9
@@ -24,18 +25,39 @@ block content
         input#phone.form-control(type='tel', name='phone', placeholder='Enter phone', required)
 
     .form-group
-      label.control-label.col-sm-3(for='country') Role:
+      label.control-label.col-sm-3(for='role') Role:
       .col-sm-9
-        select#role.form-control(name='role')
+        select#role.form-control(name='role', ng-model="role")
           each role in listOfRoles
             option(value=role)
               | #{role}
 
-// TODO: if role is driver then show two control to get number of seats in car
-          .form-group
-            label.control-label.col-sm-3(for='fullname') Major:
-            .col-sm-9
-              input#major.form-control(type='text', name='major', placeholder='Enter your major', required)
+    .form-group(ng-if="role == 'Host'")
+      label.control-label.col-sm-3(for='address') Address:
+      .col-sm-9
+        input#address.form-control(type='text', name='address', placeholder='Enter address', required)
+
+    .form-group(ng-if="role == 'Host'")
+      label.control-label.col-sm-3(for='max-guests') Maximum guests:
+      .col-sm-9
+        input#max-guests.form-control(type='number', name='maxGuests', placeholder='Enter max guests', required)
+
+    .form-group(ng-if="role == 'Host'")
+      label.control-label.col-sm-3(for='preference') Preference:
+      .col-sm-9
+        input#preference.form-control(type='text', name='preference', placeholder='Enter preference', required)
+
+    .form-group(ng-if="role == 'Driver'")
+      label.control-label.col-sm-3(for='total-seats') Total seats:
+      .col-sm-9
+        input#max-guests.form-control(type='number', name='totalSeats', placeholder='Enter total seats', required)
+
+    .form-group(ng-if="role == 'Driver'")
+      label.control-label.col-sm-3(for='total-seats') Need a navigator?:
+      .col-sm-9
+        .checkbox
+          label
+            input#max-guests.form-control(type='checkbox', name='maxGuests', value="true")
 
     .form-group
       .col-sm-offset-3.col-sm-10
