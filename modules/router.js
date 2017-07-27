@@ -5,6 +5,8 @@ var routes = function(app, databaseModels, db) {
   var personRouter = require('../routes/person'); // student page
   var mappingRouter = require('../routes/mapping'); // mapping page
 
+  var redirects = require("../constants/redirects.json");
+
   var userCtrl = require('../models/userCtrl')(databaseModels.userModel, db, [userRouter]);
   var studentCtrl = require('../models/studentCtrl')(databaseModels.studentModel, db, [studentRouter]);
   var personCtrl = require('../models/personCtrl')(databaseModels.personModel, db, [personRouter]);
@@ -13,8 +15,12 @@ var routes = function(app, databaseModels, db) {
   app.use(function(req, res, next) {
     res.locals.user = req.session.user;
     res.locals.pageURL = req.originalUrl;
-    console.log(req.originalUrl);
-    next();
+
+    if (redirects[req.originalUrl]) {
+      res.redirect(redirects[req.originalUrl]);
+    } else {
+      next();
+    }
   });
 
   app.use('/', indexRouter);

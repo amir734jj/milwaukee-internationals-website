@@ -1,0 +1,4 @@
+{
+    "/register-tour": "student/register",
+    "/": "register-tour"
+}
