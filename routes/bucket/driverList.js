@@ -15,5 +15,15 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/json', function(req, res, next) {
+  authentication(req, function loggedIn() {
+    router.personCtrl.getPersonByRole("driver", function(drivers) {
+      res.json(drivers);
+    });
+  }, function loggedOut() {
+    res.redirect("/");
+  });
+});
+
 
 module.exports = router;

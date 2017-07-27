@@ -9,8 +9,8 @@ app.controller("myCtrl", ["$scope", "$timeout", function($scope, $timeout) {
   $scope.models = {
     selected: null,
     lists: {
-      "A": [],
-      "B": []
+      "students": [],
+      "drivers": []
     }
   };
 

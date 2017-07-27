@@ -1,18 +1,13 @@
 var routes = function(app, databaseModels, db) {
-  var index = require('../routes/index');
-  var register = require('../routes/register');
-  var login = require('../routes/login');
-  var logout = require('../routes/logout');
-  var users = require('../routes/users');
-  var registerForTour = require('../routes/registerForTour');
-  var registerPerson = require('../routes/registerPerson');
-  var hostList = require('../routes/hostList');
-  var driverList = require('../routes/driverList');
-  var driverMapping = require('../routes/driverMapping');
+  var indexRouter = require('../routes/index');     // index page
+  var userRouter = require('../routes/user');       // user page
+  var studentRouter = require('../routes/student'); // student page
+  var personRouter = require('../routes/person');   // student page
+  var mappingRouter = require('../routes/mapping'); // mapping page
 
-  var userCtrl = require('../models/userCtrl')(databaseModels.userModel, db, [login, register, users]);
-  var studentCtrl = require('../models/studentCtrl')(databaseModels.studentModel, db, [registerForTour]);
-  var personCtrl = require('../models/personCtrl')(databaseModels.personModel, db, [registerPerson, hostList, driverList]);
+  var userCtrl = require('../models/userCtrl')(databaseModels.userModel, db, [user]);
+  var studentCtrl = require('../models/studentCtrl')(databaseModels.studentModel, db, [student]);
+  var personCtrl = require('../models/personCtrl')(databaseModels.personModel, db, [person]);
 
   /* order is important here */
   app.use(function(req, res, next) {
@@ -20,16 +15,11 @@ var routes = function(app, databaseModels, db) {
     next();
   });
 
-  app.use('/', registerForTour);
-  app.use('/users', users);
-  app.use('/register', register);
-  app.use('/login', login);
-  app.use('/logout', logout);
-  app.use('/register-for-tour', registerForTour);
-  app.use('/register-person', registerPerson);
-  app.use('/host-list', hostList);
-  app.use('/driver-list', driverList);
-  app.use('/driver-mapping', driverMapping);
+  app.use('/', indexRouter);
+  app.use('/user', userRouter);
+  app.use('/student', studentRouter);
+  app.use('/person', personRouter);
+  app.use('/mapping', mappingRouter);
 
   return this;
 };
