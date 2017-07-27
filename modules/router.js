@@ -12,22 +12,8 @@ var routes = function(app, databaseModels, db) {
   /* order is important here */
   app.use(function(req, res, next) {
     res.locals.user = req.session.user;
-    var urlVar = req.originalUrl.match(/[\w]+/g);
-
-    if (urlVar) {
-      if (urlVar.includes("list")) {
-        urlVar = "list";
-      } else if (urlVar.includes("register")) {
-        urlVar = "register";
-      } else {
-        urlVar = urlVar[0];
-      }
-    } else {
-      urlVar = "index";
-    }
-
-    res.locals.pageName = urlVar;
-
+    res.locals.pageURL = req.originalUrl;
+    console.log(req.originalUrl);
     next();
   });
 

@@ -22,15 +22,15 @@ html(lang="en")
           a.navbar-brand(href='/') Milwaukee Internationals
         #myNavbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li(class=pageName === "index" ? "active" : "")
+            li(class=pageURL === "/" ? "active" : "")
               a(href='/') Home
-            li(class=pageName === "register" ? "active" : "")
+            li(class=pageURL == "/student/register" ? "active" : "")
               a(href='/student/register') Register for Tour of Milwaukee
 
             - if (user)
-              li.dropdown(class=pageName === "list" ? "active" : "")
+              li.dropdown(class=pageURL.includes("list") ? "active" : "")
                 a.dropdown-toggle(data-toggle='dropdown', href='#') Lists 
-                   span.caret
+                  span.caret
                 ul.dropdown-menu
                   li
                     a(href='/student/list')
@@ -42,28 +42,25 @@ html(lang="en")
                     a(href='/person/list/host')
                       | Host list
 
-              li(class=pageName === "register" ? "active" : "")
-                a(href='/student/register')
-                  |  Register Person
-              li
+              li(class=pageURL == "/mapping/student/driver" ? "active" : "")
                 a(href='/mapping/student/driver')
                   |  Driver mapping
-              li
+              li(class=pageURL == "/mapping/student/host" ? "active" : "")
                 a(href='/mapping/student/host')
                   |  Host mapping
 
           ul.nav.navbar-nav.navbar-right
             - if (user)
-              li
+              li(class=pageURL === "/user/logout" ? "active" : "")
                 a(href='/user/logout')
                   span.glyphicon.glyphicon-log-out 
                   |  Logout
             - else
-              li
+              li(class=pageURL === "/user/register" ? "active" : "")
                 a(href='/user/register')
                   span.glyphicon.glyphicon-user
                   |  Sign Up
-              li
+              li(class=pageURL === "/user/login" ? "active" : "")
                 a(href='/user/login')
                   span.glyphicon.glyphicon-log-in
                   |  Login
