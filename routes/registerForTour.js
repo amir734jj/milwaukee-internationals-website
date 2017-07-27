@@ -38,5 +38,15 @@ router.get('/list', function(req, res, next) {
   });
 });
 
+router.get('/delete/:studentId', function(req, res, next) {
+  authentication(req, function isLoggedIn() {
+    router.studentCtrl.deleteStudent(req.params, function(student) {
+      res.redirect("/register-for-tour/list");
+    });
+  }, function loggedOut() {
+    res.redirect("/");
+  });
+});
+
 
 module.exports = router;

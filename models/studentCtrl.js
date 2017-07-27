@@ -24,6 +24,15 @@ module.exports = function(studentModel, db, injectTo) {
       studentModel.findAll().then((students) => {
         callback(students);
       });
+    },
+    deleteStudent: function(attr, callback) {
+      studentModel.destroy({
+        where: {
+          studentId: attr.studentId
+        }
+      }).then((student) => {
+        callback(student);
+      });
     }
   };
 

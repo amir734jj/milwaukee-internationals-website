@@ -1,7 +1,9 @@
 module.exports = function(db, sequelize) {
   var User = db.define("user", {
     userId: {
-      type: sequelize.STRING
+      primaryKey: true,
+      type: sequelize.UUID,
+      defaultValue: sequelize.UUIDV4
     },
     firstName: {
       type: sequelize.STRING
@@ -15,10 +17,6 @@ module.exports = function(db, sequelize) {
     },
     password: {
       type: sequelize.STRING
-    },
-    hashcode: {
-      type: sequelize.STRING,
-      unique: true
     }
   }, {
     freezeTableName: true
@@ -26,7 +24,9 @@ module.exports = function(db, sequelize) {
 
   var Student = db.define("student", {
     studentId: {
-      type: sequelize.STRING
+      primaryKey: true,
+      type: sequelize.UUID,
+      defaultValue: sequelize.UUIDV4
     },
     fullname: {
       type: sequelize.STRING
