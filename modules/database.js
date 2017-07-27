@@ -122,7 +122,7 @@ module.exports = function(db, sequelize) {
   });
 
   db.sync({
-    force: false
+    force: true
   });
 
   return {
