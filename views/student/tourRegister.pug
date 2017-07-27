@@ -1,7 +1,7 @@
-extends layout
+extends ../layout
 
 block content
-  img.img-responsive(src="images/tour-header.jpg")
+  img.img-responsive(src="/images/tour-header.jpg")
 
   .container.page-header
     h2.text-danger.text-center
@@ -16,7 +16,7 @@ block content
       |
       a(href="https://www.facebook.com/Milwaukeeinternationals/") For more information click here to send us a message on our Facebook page
 
-  form.form-horizontal(action="/register-for-tour" method="post")
+  form.form-horizontal(action="/student/register" method="post")
     .form-group
       label.control-label.col-sm-3(for='fullname') Full Name:
       .col-sm-9

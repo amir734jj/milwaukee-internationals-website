@@ -6,21 +6,17 @@ var moment = require('moment');
 
 /* GET login page. */
 router.get('/register', function(req, res, next) {
-  res.render('tourRegister', {
+  res.render('student/tourRegister', {
     listOfCountries: countries
   });
 });
 
-/* GET login page. */
-router.get('/confirmation', function(req, res, next) {
-  res.render('registrationConfirmation');
-});
 
 /* POST student page. */
-router.post('/', function(req, res, next) {
+router.post('/register', function(req, res, next) {
   router.studentCtrl.addStudent(req.body, function successCallback(student) {
     global.mailService(req.body.email, req.body);
-    res.redirect(req.originalUrl + "/confirmation");
+    res.redirect("/student/confirmation");
   });
 });
 
@@ -28,7 +24,7 @@ router.post('/', function(req, res, next) {
 router.get('/list', function(req, res, next) {
   authentication(req, function isLoggedIn() {
     router.studentCtrl.getAllStudents(function successCallback(students) {
-      res.render("studentList", {
+      res.render("student/studentList", {
         "students": students.map(student => {
           student.interests = JSON.parse(student.interests);
           student.date = moment(new Date(student.date)).format('MM-DD-YYYY, h:mm:ss a');
@@ -56,12 +52,16 @@ router.get('/list/json', function(req, res, next) {
 router.get('/delete/:studentId', function(req, res, next) {
   authentication(req, function isLoggedIn() {
     router.studentCtrl.deleteStudent(req.params, function(student) {
-      res.redirect("/register-for-tour/list");
+      res.redirect("/student/list");
     });
   }, function loggedOut() {
     res.redirect("/");
   });
 });
 
+/* GET login page. */
+router.get('/confirmation', function(req, res, next) {
+  res.render('student/registrationConfirmation');
+});
 
 module.exports = router;

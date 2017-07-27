@@ -7,7 +7,7 @@ var _ = require('underscore');
 /* GET person page. */
 router.get('/', function(req, res, next) {
   authentication(req, function loggedIn() {
-    res.render('personRegister', {
+    res.render('person/personRegister', {
       listOfRoles: roles
     });
   }, function loggedOut() {
@@ -30,11 +30,18 @@ router.post('/', function(req, res, next) {
 /* GET login page. */
 router.get('/list/:role', function(req, res, next) {
   authentication(req, function loggedIn() {
-    router.personCtrl.getPersonByRole(req.params.role, function(drivers) {
-      res.render('driverList', {
-        "drivers": drivers
-      });
+    var roleObject = _.findWhere(roles, {
+      key: req.params.role
     });
+
+    if (roleObject) {
+      router.personCtrl.getPersonByRole(roleObject.key, function(persons) {
+        var key = `${roleObject.key}s`;
+        var retVal = {};
+        retVal[key] = persons;
+        res.render(`person/${roleObject.key}List`, retVal);
+      });
+    }
   }, function loggedOut() {
     res.redirect("/");
   });
@@ -49,3 +56,5 @@ router.get('/list/:role/json', function(req, res, next) {
     res.redirect("/");
   });
 });
+
+module.exports = router;

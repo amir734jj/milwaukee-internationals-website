@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   authentication(req, function loggedIn() {
     router.userCtrl.getAllUsers((users) => {
-      res.render('users', {
+      res.render('user/list', {
         'users': users
       });
     });
@@ -20,7 +20,7 @@ router.get('/login', function(req, res, next) {
   authentication(req, function loggedIn() {
     res.redirect("/");
   }, function loggedOut() {
-    res.render('login');
+    res.render('user/login');
   });
 });
 
@@ -55,7 +55,7 @@ router.get('/register', function(req, res, next) {
   authentication(req, function loggedIn() {
     res.redirect("/");
   }, function loggedOut() {
-    res.render('register');
+    res.render('user/register');
   });
 });
 
@@ -65,11 +65,13 @@ router.post('/register', function(req, res, next) {
     res.redirect("/");
   }, function loggedOut() {
     router.userCtrl.addUser(req.body, function successCallback(user) {
-      res.redirect("/login");
+      res.redirect("user/login");
     }, function failCallback() {
-      res.render('register', {
+      res.render('user/register', {
         note: "Email is already taken, please try another email address!"
       });
     });
   });
 });
+
+module.exports = router;

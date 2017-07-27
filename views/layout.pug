@@ -22,45 +22,54 @@ html(lang="en")
           a.navbar-brand(href='/') Milwaukee Internationals
         #myNavbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active
+            li(class=pageName === "index" ? "active" : "")
               a(href='/') Home
-            li
+            li(class=pageName === "register" ? "active" : "")
               a(href='/student/register') Register for Tour of Milwaukee
 
             - if (user)
-              li.dropdown
-                a.dropdown-toggle(data-toggle='dropdown', href='#') Lists
-                  span.caret
+              li.dropdown(class=pageName === "list" ? "active" : "")
+                a.dropdown-toggle(data-toggle='dropdown', href='#') Lists 
+                   span.caret
                 ul.dropdown-menu
                   li
-                    a(href='/student/list') Student list
+                    a(href='/student/list')
+                      | Student list
                   li
-                    a(href='/person/list/driver') Driver list    
+                    a(href='/person/list/driver')
+                      | Driver list    
                   li
-                    a(href='/person/list/host') Host list
+                    a(href='/person/list/host')
+                      | Host list
 
+              li(class=pageName === "register" ? "active" : "")
+                a(href='/student/register')
+                  |  Register Person
               li
-                a(href='/student/register') Register Person
+                a(href='/mapping/student/driver')
+                  |  Driver mapping
               li
-                a(href='/mapping/driver/student') Driver mapping
-              li
-                a(href='/mapping/host/student') Host mapping
+                a(href='/mapping/student/host')
+                  |  Host mapping
 
           ul.nav.navbar-nav.navbar-right
             - if (user)
               li
                 a(href='/user/logout')
-                  span.glyphicon.glyphicon-log-out Logout
+                  span.glyphicon.glyphicon-log-out 
+                  |  Logout
             - else
               li
                 a(href='/user/register')
-                  span.glyphicon.glyphicon-user Sign Up
+                  span.glyphicon.glyphicon-user
+                  |  Sign Up
               li
                 a(href='/user/login')
-                  span.glyphicon.glyphicon-log-in Login
+                  span.glyphicon.glyphicon-log-in
+                  |  Login
     .container
       - if (note)
-        .alert.alert-danger #{note}
+        .alert.alert-danger= note
 
       .jumbotron
         block content
