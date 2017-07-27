@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET login page. */
 router.get('/', function(req, res, next) {
   authentication(req, function loggedIn() {
-    router.personCtrl.getPersonByRole("Driver", function(drivers) {
+    router.personCtrl.getPersonByRole("driver", function(drivers) {
       res.render('driverList', {
         "drivers": drivers
       });

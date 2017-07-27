@@ -1,0 +1,17 @@
+[{
+    "key": "driver",
+    "displayName": "Driver role",
+    "description": "Driving the car"
+}, {
+    "key": "host",
+    "displayName": "Host role",
+    "description": "Hosting students"
+}, {
+    "key": "navigator",
+    "displayName": "Navigator role",
+    "description": "Navigating the driver to the destination"
+}, {
+    "key": "volunteer",
+    "displayName": "volunteer role",
+    "description": "Helping the event"
+}]

@@ -29,35 +29,34 @@ block content
       .col-sm-9
         select#role.form-control(name='role', ng-model="role")
           each role in listOfRoles
-            option(value=role)
-              | #{role}
+            option(value=role.key)
+              | #{role.displayName} 
 
-    .form-group(ng-if="role == 'Host'")
+    .form-group(ng-if="role == 'host'")
       label.control-label.col-sm-3(for='address') Address:
       .col-sm-9
         input#address.form-control(type='text', name='address', placeholder='Enter address', required)
 
-    .form-group(ng-if="role == 'Host'")
+    .form-group(ng-if="role == 'host'")
       label.control-label.col-sm-3(for='max-guests') Maximum guests:
       .col-sm-9
         input#max-guests.form-control(type='number', name='maxGuests', placeholder='Enter max guests', required)
 
-    .form-group(ng-if="role == 'Host'")
+    .form-group(ng-if="role == 'host'")
       label.control-label.col-sm-3(for='preference') Preference:
       .col-sm-9
         input#preference.form-control(type='text', name='preference', placeholder='Enter preference', required)
 
-    .form-group(ng-if="role == 'Driver'")
+    .form-group(ng-if="role == 'driver'")
       label.control-label.col-sm-3(for='total-seats') Total seats:
       .col-sm-9
         input#max-guests.form-control(type='number', name='totalSeats', placeholder='Enter total seats', required)
 
-    .form-group(ng-if="role == 'Driver'")
+    .form-group(ng-if="role == 'driver'")
       label.control-label.col-sm-3(for='total-seats') Need a navigator?:
       .col-sm-9
-        .checkbox
-          label
-            input#max-guests.form-control(type='checkbox', name='maxGuests', value="true")
+        .checkbox.checkbox-primary
+          input#max-guests.form-control(type='checkbox', name='maxGuests', value="true")
 
     .form-group
       .col-sm-offset-3.col-sm-10

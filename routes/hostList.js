@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET login page. */
 router.get('/', function(req, res, next) {
   authentication(req, function loggedIn() {
-    router.personCtrl.getPersonByRole("Host", function(hosts) {
+    router.personCtrl.getPersonByRole("host", function(hosts) {
       res.render('hostList', {
         "hosts": hosts
       });

@@ -80,8 +80,8 @@ module.exports = function(db, sequelize) {
     },
     displayId: {
       type: sequelize.INTEGER,
-      defaultValue: 1,
-      autoIncrement: true
+      unique: true,
+      allowNull: false
     },
     totalSeats: {
       type: sequelize.STRING

@@ -5,26 +5,24 @@ block content
     h2.text-danger.text-center
       | List of Drivers
 
-    table.table.table-hover
-      thead
-        tr
-          th
-            | Driver ID
-          th
-            | Fullname
-          th
-            | Email
-          th
-            | Phone
-
-      each driver in drivers
-        tbody
+    - if (drivers.length)
+      table.table.table-hover
+        thead
           tr
-            td
-              | #{driver.displayId}
-            td
-              | #{driver.fullname}
-            td
-              | #{driver.email}
-            td
-              | #{driver.phone}
+            th Driver ID
+            th Fullname
+            th Email
+            th Phone
+
+        each driver in drivers
+          tbody
+            tr
+              td= driver.displayId
+              td= driver.fullname
+              td= driver.email
+              td= driver.phone
+    - else
+      .alert.alert-info
+        strong
+          | Sorry!
+        |  No driver has registered yet!

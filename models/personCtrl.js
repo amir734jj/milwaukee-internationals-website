@@ -1,5 +1,6 @@
 var _ = require("underscore");
 var hash = require("sha1");
+var roles = require('../constants/roles.json');
 
 module.exports = function(personModel, db, injectTo) {
   var self = this;
@@ -11,14 +12,16 @@ module.exports = function(personModel, db, injectTo) {
         phone: attr.phone,
         email: attr.email,
         fullname: attr.fullname,
-        role: attr.role
+        role: attr.role,
+        displayId: Math.floor(Math.random() * 1000) + 1
       };
 
-      if (attr.role === "Driver") {
+      if (attr.role === "driver") {
         objectVal.totalSeats = attr.totalSeats;
-      } else if (attr.role === "Host") {
+      } else if (attr.role === "host") {
         objectVal.maxGuests = attr.maxGuests;
         objectVal.preference = attr.preference;
+        objectVal.address = attr.address;
       }
 
       personModel.create(objectVal)
