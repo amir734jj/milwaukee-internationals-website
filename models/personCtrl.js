@@ -1,8 +1,9 @@
 var _ = require("underscore");
 var hash = require("sha1");
 var roles = require('../constants/roles.json');
+var cloneDeep = require('clone-deep');
 
-module.exports = function(personModel, db, injectTo) {
+module.exports = function(databaseModels, db, injectTo) {
   var self = this;
   var key = "personCtrl";
 
@@ -25,18 +26,62 @@ module.exports = function(personModel, db, injectTo) {
         objectVal.address = attr.address;
       }
 
-      personModel.create(objectVal)
+      databaseModels.personModel.create(objectVal)
         .done((person, created) => {
           callback(person);
         });
     },
     getPersonByRole: function(role, callback) {
-      personModel.findAll({
+      databaseModels.personModel.findAll({
         where: {
           "role": role
         }
       }).then((persons) => {
         callback(persons);
+      });
+    },
+    deletePerson: function(attr, callback) {
+      var personPointer;
+      databaseModels.personModel.findOne({
+        where: {
+          personId: attr.personId
+        },
+        raw: true
+      }).then((person) => {
+        personPointer = cloneDeep(person);
+        databaseModels.personModel.destroy({
+          where: {
+            personId: attr.personId
+          }
+        }).then(function() {
+          if (!personPointer) {
+            return;
+          }
+
+          if (personPointer.role === "driver") {
+            databaseModels.driverHostMappingModel.destroy({
+              where: {
+                driverId: personPointer.personId
+              }
+            }).then((maps) => {
+              databaseModels.studentDriverMappingModel.destroy({
+                where: {
+                  driverId: personPointer.personId
+                }
+              }).then((maps) => {
+                callback(maps);
+              });
+            });
+          } else if (personPointer.role === "host") {
+            databaseModels.driverHostMappingModel.destroy({
+              where: {
+                hostId: personPointer.personId
+              }
+            }).then((maps) => {
+              callback(maps);
+            });
+          }
+        })
       });
     }
   };
@@ -46,9 +91,9 @@ module.exports = function(personModel, db, injectTo) {
 
   injectTo.map((router) => {
     if (_.isObject(router)) {
-      router[key] = (function(personModel, db) {
+      router[key] = (function(databaseModels, db) {
         return methods;
-      })(personModel, db);
+      })(databaseModels, db);
     }
   });
 

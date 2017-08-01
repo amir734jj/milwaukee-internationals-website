@@ -13,6 +13,7 @@ block content
             th Fullname
             th Email
             th Phone
+            th Action
 
         each driver in drivers
           tbody
@@ -21,6 +22,9 @@ block content
               td= driver.fullname
               td= driver.email
               td= driver.phone
+              td
+                a.btn.btn-danger(href='./delete/' + driver.personId) delete
+              
     - else
       .alert.alert-info
         strong

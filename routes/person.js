@@ -57,4 +57,16 @@ router.get('/list/:role/json', function(req, res, next) {
   });
 });
 
+router.get('/list/delete/:id', function(req, res, next) {
+  authentication(req, function loggedIn() {
+    router.personCtrl.deletePerson({
+      personId: req.params.id
+    }, function() {
+      res.redirect(req.originalUrl);
+    });
+  }, function loggedOut() {
+    res.redirect("/");
+  });
+});
+
 module.exports = router;

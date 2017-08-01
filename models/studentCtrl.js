@@ -1,13 +1,13 @@
 var _ = require("underscore");
 var hash = require("sha1");
 
-module.exports = function(studentModel, db, injectTo) {
+module.exports = function(databaseModels, db, injectTo) {
   var self = this;
   var key = "studentCtrl";
 
   var methods = {
     addStudent: function(attr, successCallback, failCallback) {
-      studentModel.create({
+      databaseModels.studentModel.create({
           fullname: attr.fullname,
           major: attr.major,
           email: attr.email,
@@ -21,17 +21,29 @@ module.exports = function(studentModel, db, injectTo) {
         });
     },
     getAllStudents: function(callback) {
-      studentModel.findAll().then((students) => {
+      databaseModels.studentModel.findAll().then((students) => {
         callback(students);
       });
     },
     deleteStudent: function(attr, callback) {
-      studentModel.destroy({
+      databaseModels.studentModel.findOne({
         where: {
           studentId: attr.studentId
         }
       }).then((student) => {
-        callback(student);
+        databaseModels.studentModel.destroy({
+            where: {
+                studentId: attr.studentId
+            }
+        }).then((nrows) => {
+            databaseModels.studentDriverMappingModel.destroy({
+                where: {
+                    studentId: attr.studentId
+                }
+            }).then((nrows) => {
+                callback(student);
+            });
+        });
       });
     }
   };
@@ -41,9 +53,9 @@ module.exports = function(studentModel, db, injectTo) {
 
   injectTo.map((router) => {
     if (_.isObject(router)) {
-      router[key] = (function(studentModel, db) {
+      router[key] = (function(databaseModels, db) {
         return methods;
-      })(studentModel, db);
+      })(databaseModels, db);
     }
   });
 

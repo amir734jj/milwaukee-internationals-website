@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .row(ng-controller="hostMappingCtrl")
-    .col-sm-8
+    .col-sm-6
       .panel.panel-primary
         .panel-heading
           h3.panel-title
@@ -14,13 +14,13 @@ block content
               .pull-right
                 .form-group.form-inline
                   label
-                    | Select Host:
+                    | Select Host:&nbsp;&nbsp;
                   select.form-control(ng-model="driver.hostId")
                     option(value="{{host.personId}}", ng-repeat="host in allAvailableHosts")
                       | {{host.fullname}}
                   a.btn.btn-success(ng-click="addMap(driver.personId, driver.hostId)")
                     span.glyphicon.glyphicon-plus
-    .col-sm-4
+    .col-sm-6
       .panel.panel-primary
         .panel-heading
           h3.panel-title
@@ -30,7 +30,9 @@ block content
             .row
               .col-sm-6
                 h4.panel-heading
-                | {{host.fullname}} ({{host.maxGuests}})
+                  | {{host.fullname}}
+                  .small
+                    | (capacity = {{host.maxGuests}}})
               .col-sm-6
                 .list-group
                   .list-group-item.clearfix(ng-repeat="driver in host.drivers")
@@ -38,6 +40,6 @@ block content
                     span.pull-right
                       a.btn.btn-danger.pull-right(ng-click="deleteMap(driver.personId, host.personId)")
                         span.glyphicon.glyphicon-remove
-                          
+
                   .list-group-item.list-group-item-warning(ng-show="!host.drivers.length")
                     | This host does not have any drivers
