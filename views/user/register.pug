@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  form.form-horizontal(action="register" method="post")
+    .form-group
+      label.control-label.col-sm-2(for='firstname') Firstname:
+      .col-sm-10
+        input#firstname.form-control(type='text', name='firstName', placeholder='Enter firstname', required)
+    .form-group
+      label.control-label.col-sm-2(for='lastname') Lastname:
+      .col-sm-10
+        input#lastname.form-control(type='text', name='lastName', placeholder='Enter lastname', required)
+    .form-group
+      label.control-label.col-sm-2(for='email') Email:
+      .col-sm-10
+        input#email.form-control(type='email', name='email', placeholder='Enter email', required)
+    .form-group
+      label.control-label.col-sm-2(for='password') Password:
+      .col-sm-10
+        input#password.form-control(type='password', name='password', placeholder='Enter password', required)
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        .checkbox
+          label
+            input(type='checkbox')
+            |  Remember me
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-primary(class=btn-primary type='submit') Sign Up

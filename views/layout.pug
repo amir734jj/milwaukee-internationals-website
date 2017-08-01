@@ -1,0 +1,86 @@
+doctype html
+html(lang="en")
+  head
+    title
+      | Milwaukee Internationals
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+
+    - if (bundles)
+      for name in bundles.emit('bundle.css')
+        link(rel='stylesheet', href="/"+name)
+
+      for name in bundles.emit('bundle.js')
+        script(href='stylesheet', src="/"+name)
+
+  body(ng-app='myApp', jq-plugins-directive)
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Milwaukee Internationals
+        #myNavbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            //- li(class=pageURL === "/" ? "active" : "")
+            //-   a(href='/') Home
+            li(class=pageURL == "/student/register" ? "active" : "")
+              a(href='/student/register') Register for Tour of Milwaukee
+
+            - if (user)
+              li.dropdown(class=pageURL.includes("list") ? "active" : "")
+                a.dropdown-toggle(data-toggle='dropdown', href='#') Lists 
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href='/user')
+                      | User list
+                  li
+                    a(href='/student/list')
+                      | Student list
+                  li
+                    a(href='/person/list/driver')
+                      | Driver list
+                  li
+                    a(href='/person/list/host')
+                      | Host list
+
+              li(class=pageURL == "/mapping/driver" ? "active" : "")
+                a(href='/mapping/driver')
+                  |  Driver mapping
+              li(class=pageURL == "/mapping/host" ? "active" : "")
+                a(href='/mapping/host')
+                  |  Host mapping
+              li(class=pageURL == "/person/register" ? "active" : "")
+                a(href='/person/register')
+                  |  Register person
+              li(class=pageURL == "/tour" ? "active" : "")
+                a(href='/tour')
+                  |  Tour manage
+          ul.nav.navbar-nav.navbar-right
+            - if (user)
+              li(class=pageURL === "/user/logout" ? "active" : "")
+                a(href='/user/logout')
+                  span.glyphicon.glyphicon-log-out
+                  |  Logout
+            - else
+              //- li(class=pageURL === "/user/register" ? "active" : "")
+              //-   a(href='/user/register')
+              //-     span.glyphicon.glyphicon-user
+              //-     |  Sign Up
+              li(class=pageURL === "/user/login" ? "active" : "")
+                a(href='/user/login')
+                  span.glyphicon.glyphicon-log-in
+                  |  Login
+    .container
+      - if (note)
+        .alert.alert-danger= note
+
+      .jumbotron
+        block content
+
+    .footer
+      .container.text-center
+        | Work of Asher and Amir, Summer 2017

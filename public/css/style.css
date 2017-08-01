@@ -1,0 +1,92 @@
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  background-color: #808080;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.interest-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.interest-list-item {
+  margin: 5px !important;
+}
+
+.banner {
+  width: 80%;
+  font-size: 150% !important;
+  margin-bottom: 50px !important;
+  margin-top: 50px !important;
+}
+
+p.banner-item {
+  font-weight: 300 !important;
+}
+
+.select2 {
+  width: 100%;
+}
+
+.select-dropdown {
+  position: static;
+  .select-dropdown--above {
+    margin-top: 336px;
+  }
+}
+
+.container {
+  width: 90%;
+}
+
+.img-responsive {
+  margin: 0 auto;
+}
+
+.jumbotron {
+  background: white;
+}
+
+.big-checkbox>input {
+  width: 20px;
+  height: 20px;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 5px 15px;
+  /* adjust here */
+  margin-bottom: -1px;
+  border: 1px solid #ddd;
+  line-height: 1em/* set to text height */
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}

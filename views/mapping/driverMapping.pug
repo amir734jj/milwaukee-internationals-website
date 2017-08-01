@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+  .row(ng-controller="driverMappingCtrl")
+    .col-sm-6
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title
+            | Student without drivers
+        .panel-body
+          .list-group
+            .list-group-item.clearfix(ng-repeat="student in studentsBucket")
+              | {{student.fullname}}
+              .pull-right
+                .form-group.form-inline
+                  label
+                    | Select driver:
+                  select.form-control(ng-model="student.driverId")
+                    option(value="{{driver.personId}}", ng-repeat="driver in allAvailableDrivers")
+                      | {{driver.fullname}}
+                  a.btn.btn-success(ng-click="addMap(student.studentId, student.driverId)")
+                    span.glyphicon.glyphicon-plus
+    .col-sm-6
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title
+            | Drivers and their students
+        .panel-body
+          .panel.panel-default(ng-repeat="driver in driversBucket")
+            .row
+              .col-sm-6
+                h4.panel-heading
+                  | {{driver.fullname}} ({{driver.totalSeats}})
+                  
+              .col-sm-6
+                .list-group
+                  .list-group-item.clearfix(ng-repeat="student in driver.students")
+                    | {{student.fullname}}
+                    span.pull-right
+                      a.btn.btn-danger.pull-right(ng-click="deleteMap(student.studentId, driver.personId)")
+                        span.glyphicon.glyphicon-remove
+                        
+                  .list-group-item.list-group-item-warning(ng-show="!driver.students.length")
+                    | This driver does not have any students

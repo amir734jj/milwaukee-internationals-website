@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  div(ng-controller="checkInCtrl")
+    form
+      .form-group
+        label(for='fullname') Fullname:
+        input#fullname.form-control(type='text', ng-change="updateTableByFullname(fullname)", ng-model="fullname")
+      .form-group
+        label(for='text') Country:
+        select#country.form-control(name='country', ng-change="updateTableByCountry(country)", ng-model="country")
+          option(value="{{country}}", ng-repeat="country in countries")
+            | {{country}}
+
+    hr
+
+    table.table.table-bordered.table-hover
+      thead
+        tr
+          th Fullname
+          th Country
+          th Major
+          th Checked-in
+      tbody
+        tr(ng-repeat="student in students")
+          td
+            | {{student.fullname}}
+          td
+            | {{student.country}}
+          td
+            | {{student.major}}
+          td
+            .checkbox
+              label.big-checkbox
+                input(type='checkbox', ng-model="student.attendance", ng-checked="student.attendance ? true : false", ng-change="changeAttendance(student)")

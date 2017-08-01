@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .container.page-header
+    h2.text-danger.text-center
+      | List of Drivers
+
+    - if (drivers.length)
+      table.table.table-hover
+        thead
+          tr
+            th Driver ID
+            th Fullname
+            th Email
+            th Phone
+
+        each driver in drivers
+          tbody
+            tr
+              td= driver.displayId
+              td= driver.fullname
+              td= driver.email
+              td= driver.phone
+    - else
+      .alert.alert-info
+        strong
+          | Sorry!
+        |  No driver has registered yet!

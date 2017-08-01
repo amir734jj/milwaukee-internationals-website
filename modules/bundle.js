@@ -1,0 +1,44 @@
+var path = require('path');
+
+module.exports = function(app, expressBundles) {
+  var token = "";
+
+  if (app.get('env') === "production") {
+    token = "min.";
+  }
+
+  var process = (path) => {
+    var extension = path.match(/[^.]+$/g)[0];
+    var str = path.replace(new RegExp(extension + "$"), token + extension);
+    return str;
+  };
+
+  app.use(expressBundles.middleware({
+    env: "development",
+    /*app.get('env'), */
+    src: path.join(__dirname, 'assets'),
+    bundles: {
+      'bundle.css': ([
+        'css/bootstrap.css',
+        'css/bootstrap-theme.css',
+        'css/ng-tags-input.css',
+        'css/ng-tags-input.bootstrap.css',
+        'css/select2.css'
+      ]).map(process).concat([
+        'css/style.css'
+      ]),
+      'bundle.js': ([
+        'js/jquery.js',
+        'js/bootstrap.js',
+        'js/angular.js',
+        'js/ng-tags-input.js',
+        'js/select2.js',
+        'js/jquery.validate.js'
+      ]).map(process).concat([
+        'js/script.js'
+      ])
+    }
+  }));
+
+  return this;
+};

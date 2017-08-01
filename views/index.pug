@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+
+  - if (user)
+    p Welcome to #{title}, Mr. #{user.lastName}
+  - else
+    p Welcome to Milwaukee Internationals!
+
+  p Register for Tour of Milwaukee

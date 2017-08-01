@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  table.table.table-bordered
+    thead
+      tr
+        th Fullname
+        th Email
+    tbody
+      each user in users
+        tr
+          td= user.firstName + " " + user.lastName
+          td= user.email
