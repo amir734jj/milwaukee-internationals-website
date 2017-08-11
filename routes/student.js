@@ -2,12 +2,15 @@ var authentication = require('../modules/authentication');
 var express = require('express');
 var router = express.Router();
 var countries = require('../constants/countries.json');
+var universities = require('../constants/universities.json');
+
 var moment = require('moment');
 
 /* GET login page. */
 router.get('/register', function(req, res, next) {
   res.render('student/tourRegister', {
-    listOfCountries: countries
+    listOfCountries: countries,
+    listOfUniversity: universities
   });
 });
 

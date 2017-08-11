@@ -28,7 +28,49 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
         $scope.updateData();
       });
     };
-  }
+  };
+
+
+  $scope.getAllDriverMappingPDF = function() {
+    $http.get("driver/list/json").then(function(response) {
+      var driversBucket = response.data.driversBucket;
+
+      var doc = new jsPDF({
+        orientation: "l",
+        lineHeight: 1.5
+      });
+
+      doc.setFont('courier');
+
+      doc.setFontSize(11);
+
+      var subsetAttr = function(attrList, obj) {
+        return attrList.reduce(function(o, k) {
+          o[k] = obj[k];
+          return o;
+        }, {});
+      };
+
+
+      driversBucket.map(function(driver, index) {
+        var str = "Driver: " + driver.fullname + " ( available: " + (driver.totalSeats - driver.students.length) + " )" + "\n\n";
+
+        str += stringTable.create(driver.students.map(function(student) {
+          return subsetAttr(["fullname", "country", "email", "university", "major"], student);
+        }));
+
+        doc.text(20, 20, str);
+
+        if (index + 1 < driversBucket.length) {
+          doc.addPage();
+        }
+
+      });
+
+      doc.save("student-list.pdf");
+
+    });
+  };
 
   $scope.updateData();
 
@@ -63,7 +105,50 @@ app.controller("hostMappingCtrl", ["$scope", "$http", "$window", function($scope
         $scope.updateData();
       });
     };
-  }
+  };
+
+
+  $scope.getAllHostMappingPDF = function() {
+    $http.get("host/list/json").then(function(response) {
+      var hostsBucket = response.data.hostsBucket;
+
+      var doc = new jsPDF({
+        orientation: "l",
+        lineHeight: 1.5
+      });
+
+      doc.setFont('courier');
+
+      doc.setFontSize(11);
+
+      var subsetAttr = function(attrList, obj) {
+        return attrList.reduce(function(o, k) {
+          o[k] = obj[k];
+          return o;
+        }, {});
+      };
+
+
+      hostsBucket.map(function(host, index) {
+        var str = "Host: " + host.fullname + " ( available: " + (host.maxGuests - host.drivers.length) + " )" + "\n\n";
+
+        str += stringTable.create(host.drivers.map(function(driver) {
+          return subsetAttr(["fullname", "email", "phone"], driver);
+        }));
+
+        doc.text(20, 20, str);
+
+        if (index + 1 < hostsBucket.length) {
+          doc.addPage();
+        }
+
+      });
+
+      doc.save("student-list.pdf");
+
+    });
+  };
+
 
   $scope.updateData();
 
@@ -154,11 +239,14 @@ app.controller("studentListCtrl", ["$scope", "$http", function($scope, $http) {
     $http.get("list/json").then(function(response) {
       var students = response.data;
 
-      var doc = new jsPDF();
+      var doc = new jsPDF({
+        orientation: "l",
+        lineHeight: 1.5
+      });
 
       doc.setFont('courier');
 
-      doc.setFontSize(10);
+      doc.setFontSize(11);
 
       var subsetAttr = function(attrList, obj) {
         return attrList.reduce(function(o, k) {
@@ -167,15 +255,15 @@ app.controller("studentListCtrl", ["$scope", "$http", function($scope, $http) {
         }, {});
       };
 
-      var i, j, temparray, chunk = 30;
+      var i, j, temparray, chunk = 25;
       for (i = 0, j = students.length; i < j; i += chunk) {
         temparray = students.slice(i, i + chunk);
 
         var str = stringTable.create(temparray.map(function(student) {
-          return subsetAttr(["fullname", "country", "email"], student);
+          return subsetAttr(["fullname", "country", "email", "university", "major", "attendance"], student);
         }));
 
-        doc.text(10, 10, str);
+        doc.text(20, 20, str);
 
         if (i + chunk < j) {
           doc.addPage();

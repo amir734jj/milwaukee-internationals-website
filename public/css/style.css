@@ -90,3 +90,10 @@ p.banner-item {
   background-color: #efefef;
   text-align: center;
 }
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    margin: 10px;
+}

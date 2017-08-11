@@ -28,6 +28,14 @@ block content
         input#major.form-control(type='text', name='major', placeholder='Enter your major', required)
 
     .form-group
+      label.control-label.col-sm-3(for='university') University:
+      .col-sm-9
+        select#university.form-control(name='university')
+          each university in listOfUniversity
+            option(value=university)
+              | !{university}
+                    
+    .form-group
       label.control-label.col-sm-3(for='country') Country:
       .col-sm-9
         select#country.form-control(name='country')

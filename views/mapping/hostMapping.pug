@@ -2,6 +2,10 @@ extends ../layout
 
 block content
   .row(ng-controller="hostMappingCtrl")
+    .row
+      a.btn.btn-primary.pull-right(ng-click="getAllHostMappingPDF()")
+        | Download pdf
+    hr
     .col-sm-6
       .panel.panel-primary
         .panel-heading
@@ -36,7 +40,8 @@ block content
               .col-sm-6
                 .list-group
                   .list-group-item.clearfix(ng-repeat="driver in host.drivers")
-                    | {{driver.fullname}}
+                    div.pull-left.vcenter
+                      | {{driver.fullname}}
                     span.pull-right
                       a.btn.btn-danger.pull-right(ng-click="deleteMap(driver.personId, host.personId)")
                         span.glyphicon.glyphicon-remove

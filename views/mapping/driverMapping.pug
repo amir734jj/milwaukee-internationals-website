@@ -2,6 +2,12 @@ extends ../layout
 
 block content
   .row(ng-controller="driverMappingCtrl")
+    .row
+      a.btn.btn-primary.pull-right(ng-click="getAllDriverMappingPDF()")
+        | Download pdf
+    
+    hr
+          
     .col-sm-6
       .panel.panel-primary
         .panel-heading
@@ -37,7 +43,8 @@ block content
               .col-sm-6
                 .list-group
                   .list-group-item.clearfix(ng-repeat="student in driver.students")
-                    | {{student.fullname}}
+                    div.pull-left.vcenter
+                      | {{student.fullname}}
                     span.pull-right
                       a.btn.btn-danger.pull-right(ng-click="deleteMap(student.studentId, driver.personId)")
                         span.glyphicon.glyphicon-remove

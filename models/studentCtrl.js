@@ -10,6 +10,7 @@ module.exports = function(databaseModels, db, injectTo) {
       databaseModels.studentModel.create({
           fullname: attr.fullname,
           major: attr.major,
+          university: attr.university,
           email: attr.email,
           phone: attr.phone,
           country: attr.country,

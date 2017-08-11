@@ -55,7 +55,7 @@ module.exports = function(db, sequelize) {
       type: sequelize.BOOLEAN,
       defaultValue: false
     },
-    driverId: {
+    university: {
       type: sequelize.STRING
     }
   }, config);

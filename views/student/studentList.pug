@@ -15,6 +15,7 @@ block content
           th Email
           th Phone
           th Country
+          th University
           th Interest
           th Action
 
@@ -27,6 +28,7 @@ block content
             td= student.email
             td= student.phone
             td= student.country
+            td= student.university
             td.interest-list
               each interest in student.interests
                 span.label.label-primary.interest-list-item= interest

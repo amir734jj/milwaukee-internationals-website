@@ -99,7 +99,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.locals.pretty = true;
+app.locals.pretty = app.get('env') === "development";
 
 // error handler
 app.use(function(err, req, res, next) {
