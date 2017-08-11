@@ -167,67 +167,93 @@ app.directive("jqPluginsDirective", ["$timeout", function($timeout) {
 }]);
 
 app.controller("checkInCtrl", ["$scope", "$http", function($scope, $http) {
+  $scope.countries = "All Countries";
 
   $scope.getAllStudents = function() {
     $http.get(window.location.pathname + "/students").then(function(response) {
       $scope.students = response.data;
       $scope.allStudents = response.data;
-      $scope.updateTableByCountry($scope.country);
-      $scope.updateTableByFullname($scope.fullname);
     });
   };
 
   $scope.changeAttendance = function(student) {
     $http.post(window.location.pathname + "/check-in", {
       studentId: student.studentId,
-      attendance: student.attendance
+      attendance: !student.attendance
     }).then(function() {
-      $scope.getAllStudents();
+      $scope.attendance = !$scope.attendance;
+      $scope.updateTable();
     });
   };
 
   $scope.getStudentCountries = function() {
     $http.get(window.location.pathname + "/get-student-countries").then(function(response) {
-      $scope.countries = response.data;
-      $scope.countries.push("All countries");
+      $scope.countries = ["All Countries"];
+      $scope.countries = $scope.countries.concat(response.data);
+      $scope.country = $scope.countries[0]
     });
   };
 
-  $scope.updateTableByCountry = function(country) {
-    if (country === "All countries") {
-      $scope.students = $scope.allStudents;
+  $scope.updateTable = function() {
+
+    var students = $scope.allStudents;
+    var retVal_country = [];
+    var retVal_attendance = [];
+    var retVal_fullname = [];
+    var retVal = [];
+
+
+    if ($scope.country === "All Countries") {
+      retVal_country = students;
     } else {
-      $scope.students = $scope.allStudents.filter(function(student) {
-        return student.country === country;
-      });
-    }
-  };
+      for (var i = 0; i < students.length; i++) {
+        var student = students[i];
 
-  $scope.updateTableByFullname = function(fullname) {
-    if (fullname) {
-      $scope.students = $scope.allStudents.filter(function(student) {
-        return student.fullname.toLowerCase().indexOf(fullname.toLowerCase()) > -1;
-      });
+        if (student.country === $scope.country) {
+          retVal_country.push(student);
+        }
+      }
+    }
+    students = retVal_country;
+
+
+
+
+    if ($scope.attendanceFilter === "all") {
+      retVal_attendance = students;
     } else {
-      $scope.students = $scope.allStudents;
+      for (var i = 0; i < students.length; i++) {
+        var student = students[i];
+
+        if ((student.attendance && $scope.attendanceFilter === "yes") || (!student.attendance && $scope.attendanceFilter === "no")) {
+          retVal_attendance.push(student);
+        }
+      }
     }
+    students = retVal_attendance;
+
+
+    if (!$scope.fullname) {
+      retVal_fullname = students;
+    } else {
+      for (var i = 0; i < students.length; i++) {
+        var student = students[i];
+
+        if (student.fullname.toLowerCase().indexOf($scope.fullname.toLowerCase()) > -1) {
+          retVal_fullname.push(student);
+        }
+      }
+    }
+    students = retVal_fullname;
+
+
+    $scope.students = students;
+
   };
 
-  $scope.filterByAttendance = function(attendance) {
-    if (attendance === "all") {
-      $scope.students = $scope.allStudents;
-    } else if (attendance === "yes") {
-      $scope.students = $scope.allStudents.filter(function(student) {
-        return student.attendance;
-      });
-    } else if (attendance === "no") {
-      $scope.students = $scope.allStudents.filter(function(student) {
-        return !student.attendance;
-      });
-    }
-  };
-
-  $scope.attendance = "all";
+  $scope.countries = [];
+  $scope.attendanceFilter = "all";
+  $scope.fullname = "";
 
   $scope.getStudentCountries();
 
