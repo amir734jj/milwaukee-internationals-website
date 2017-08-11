@@ -11,6 +11,20 @@ block content
         select#country.form-control(name='country', ng-change="updateTableByCountry(country)", ng-model="country")
           option(value="{{country}}", ng-repeat="country in countries")
             | {{country}}
+      .form-group
+        label(for='text') Filter by attendance:
+        .radio
+          label
+            input(type='radio', name='optradio', value="all", ng-model="attendanceFilter", ng-change="filterByAttendance('all')")
+            | Present and Absent
+        .radio
+          label
+            input(type='radio', name='optradio', value="yes", ng-model="attendanceFilter", ng-change="filterByAttendance('yes')")
+            | Present
+        .radio.disabled
+          label
+            input(type='radio', name='optradio', value="no", ng-model="attendanceFilter", ng-change="filterByAttendance('no')")
+            | Absent
 
     hr
 

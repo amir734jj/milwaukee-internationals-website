@@ -2,6 +2,10 @@ extends ../layout
 
 block content
   - if (students.length)
+    .row(ng-controller="studentListCtrl")
+      a.btn.btn-primary.pull-right(ng-click="getAllStudentsPDF()")
+        | Download pdf
+      
     table.table.table-hover
       thead
         tr

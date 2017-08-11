@@ -33,7 +33,9 @@ module.exports = function(app, expressBundles) {
         'js/angular.js',
         'js/ng-tags-input.js',
         'js/select2.js',
-        'js/jquery.validate.js'
+        'js/jquery.validate.js',
+        'js/jspdf.js',
+        'js/stringTable.js'
       ]).map(process).concat([
         'js/script.js'
       ])

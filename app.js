@@ -99,7 +99,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.locals.pretty = false;
+app.locals.pretty = true;
 
 // error handler
 app.use(function(err, req, res, next) {

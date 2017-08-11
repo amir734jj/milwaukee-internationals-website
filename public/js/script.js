@@ -128,7 +128,62 @@ app.controller("checkInCtrl", ["$scope", "$http", function($scope, $http) {
     }
   };
 
+  $scope.filterByAttendance = function(attendance) {
+    if (attendance === "all") {
+      $scope.students = $scope.allStudents;
+    } else if (attendance === "yes") {
+      $scope.students = $scope.allStudents.filter(function(student) {
+        return student.attendance;
+      });
+    } else if (attendance === "no") {
+      $scope.students = $scope.allStudents.filter(function(student) {
+        return !student.attendance;
+      });
+    }
+  };
+
+  $scope.attendance = "all";
+
   $scope.getStudentCountries();
 
   $scope.getAllStudents();
 }]);
+
+app.controller("studentListCtrl", ["$scope", "$http", function($scope, $http) {
+  $scope.getAllStudentsPDF = function() {
+    $http.get("list/json").then(function(response) {
+      var students = response.data;
+
+      var doc = new jsPDF();
+
+      doc.setFont('courier');
+
+      doc.setFontSize(10);
+
+      var subsetAttr = function(attrList, obj) {
+        return attrList.reduce(function(o, k) {
+          o[k] = obj[k];
+          return o;
+        }, {});
+      };
+
+      var i, j, temparray, chunk = 30;
+      for (i = 0, j = students.length; i < j; i += chunk) {
+        temparray = students.slice(i, i + chunk);
+
+        var str = stringTable.create(temparray.map(function(student) {
+          return subsetAttr(["fullname", "country", "email"], student);
+        }));
+
+        doc.text(10, 10, str);
+
+        if (i + chunk < j) {
+          doc.addPage();
+        }
+      }
+
+      doc.save("student-list.pdf");
+
+    });
+  };
+}])
