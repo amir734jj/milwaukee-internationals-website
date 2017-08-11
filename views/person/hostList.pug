@@ -1,6 +1,10 @@
 extends ../layout
 
 block content
+  div(ng-controller="hostListCtrl")
+    a.btn.btn-primary.pull-right(ng-click="getAllHostsPDF()")
+      | Download pdf
+      
   .container.page-header
     h2.text-danger.text-center
       | List of Hosts

@@ -67,7 +67,7 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
 
       });
 
-      doc.save("student-list.pdf");
+      doc.save("student-driver-mapping.pdf");
 
     });
   };
@@ -144,7 +144,7 @@ app.controller("hostMappingCtrl", ["$scope", "$http", "$window", function($scope
 
       });
 
-      doc.save("student-list.pdf");
+      doc.save("driver-host-mapping.pdf");
 
     });
   };
@@ -301,3 +301,98 @@ app.controller("studentListCtrl", ["$scope", "$http", function($scope, $http) {
     });
   };
 }])
+
+
+app.controller("driverListCtrl", ["$scope", "$http", function($scope, $http) {
+  $scope.getAllDriversPDF = function() {
+    $http.get("driver/json").then(function(response) {
+      var drivers = response.data;
+
+      var doc = new jsPDF({
+        orientation: "l",
+        lineHeight: 1.5
+      });
+
+      doc.setFont('courier');
+
+      doc.setFontSize(10);
+
+      var subsetAttr = function(attrList, obj) {
+        return attrList.reduce(function(o, k) {
+          o[k] = obj[k];
+          return o;
+        }, {});
+      };
+
+      var i, j, temparray, chunk = 25;
+      for (i = 0, j = drivers.length; i < j; i += chunk) {
+        temparray = drivers.slice(i, i + chunk);
+
+        var str = stringTable.create(temparray.map(function(driver) {
+          return subsetAttr(["fullname", "email", "phone", "needNavigator", "totalSeats"], driver);
+        }));
+
+        if (i === 0) {
+          str = "Driver List ( count of drivers: " + drivers.length + " )" + "\n\n" + str;
+        }
+
+        doc.text(20, 20, str);
+
+        if (i + chunk < j) {
+          doc.addPage();
+        }
+      }
+
+      doc.save("driver-list.pdf");
+
+    });
+  };
+}]);
+
+
+
+app.controller("hostListCtrl", ["$scope", "$http", function($scope, $http) {
+  $scope.getAllHostsPDF = function() {
+    $http.get("host/json").then(function(response) {
+      var hosts = response.data;
+
+      var doc = new jsPDF({
+        orientation: "l",
+        lineHeight: 1.5
+      });
+
+      doc.setFont('courier');
+
+      doc.setFontSize(10);
+
+      var subsetAttr = function(attrList, obj) {
+        return attrList.reduce(function(o, k) {
+          o[k] = obj[k];
+          return o;
+        }, {});
+      };
+
+      var i, j, temparray, chunk = 25;
+      for (i = 0, j = hosts.length; i < j; i += chunk) {
+        temparray = hosts.slice(i, i + chunk);
+
+        var str = stringTable.create(temparray.map(function(host) {
+          return subsetAttr(["fullname", "email", "phone", "maxGuests", "preference", "address"], host);
+        }));
+
+        if (i === 0) {
+          str = "Host List ( count of hosts: " + hosts.length + " )" + "\n\n" + str;
+        }
+
+        doc.text(20, 20, str);
+
+        if (i + chunk < j) {
+          doc.addPage();
+        }
+      }
+
+      doc.save("host-list.pdf");
+
+    });
+  };
+}]);
