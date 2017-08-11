@@ -11,7 +11,7 @@ html(lang="en")
         link(rel='stylesheet', href="/"+name)
 
       for name in bundles.emit('bundle.js')
-        script(href='stylesheet', src="/"+name)
+        script(src="/"+name)
 
   body(ng-app='myApp', jq-plugins-directive)
     nav.navbar.navbar-default
