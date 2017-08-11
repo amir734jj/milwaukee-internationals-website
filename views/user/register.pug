@@ -3,9 +3,13 @@ extends ../layout
 block content
   form.form-horizontal(action="register" method="post")
     .form-group
-      label.control-label.col-sm-2(for='fullname') Fullname:
+      label.control-label.col-sm-2(for='firstname') Firstname:
       .col-sm-10
-        input#firstname.form-control(type='text', name='fullName', placeholder='Enter fullname', required)
+        input#firstname.form-control(type='text', name='firstName', placeholder='Enter firstname', required)
+    .form-group
+      label.control-label.col-sm-2(for='lastname') Lastname:
+      .col-sm-10
+        input#lastname.form-control(type='text', name='lastName', placeholder='Enter lastname', required)
     .form-group
       label.control-label.col-sm-2(for='email') Email:
       .col-sm-10
