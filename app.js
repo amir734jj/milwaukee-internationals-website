@@ -18,8 +18,8 @@ var app = express();
 var smtpTransport = mailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "uwmnow.cs@gmail.com",
-        pass: "uwmnow2017"
+        user: "tourofmilwaukee@gmail.com",
+        pass: "5385Eastbrook"
     },
     tls: {
         // do not fail on invalid certs

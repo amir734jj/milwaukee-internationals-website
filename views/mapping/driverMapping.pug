@@ -5,14 +5,14 @@ block content
     .row
       a.btn.btn-primary.pull-right(ng-click="getAllDriverMappingPDF()")
         | Download pdf
-    
+
     hr
-          
+
     .col-sm-6
       .panel.panel-primary
         .panel-heading
           h3.panel-title
-            | Student without drivers
+            | Student without Drivers
         .panel-body
           .list-group
             .list-group-item.clearfix(ng-repeat="student in studentsBucket")
@@ -30,7 +30,7 @@ block content
       .panel.panel-primary
         .panel-heading
           h3.panel-title
-            | Drivers and their students
+            | Drivers and Assigned Students
         .panel-body
           .panel.panel-default(ng-repeat="driver in driversBucket")
             .row
@@ -39,7 +39,7 @@ block content
                   | {{driver.fullname}}
                   .small
                     | (capacity = {{driver.totalSeats}})
-                  
+
               .col-sm-6
                 .list-group
                   .list-group-item.clearfix(ng-repeat="student in driver.students")
@@ -48,6 +48,6 @@ block content
                     span.pull-right
                       a.btn.btn-danger.pull-right(ng-click="deleteMap(student.studentId, driver.personId)")
                         span.glyphicon.glyphicon-remove
-                        
+
                   .list-group-item.list-group-item-warning(ng-show="!driver.students.length")
                     | This driver does not have any students
