@@ -30,35 +30,30 @@ html(lang="en")
               a(href='/student/register') Register for Tour of Milwaukee
 
             - if (user)
-              li.dropdown(class=pageURL.includes("list") ? "active" : "")
-                a.dropdown-toggle(data-toggle='dropdown', href='#') Lists 
-                  span.caret
-                ul.dropdown-menu
-                  li
-                    a(href='/user')
-                      | User list
-                  li
-                    a(href='/student/list')
-                      | Student list
-                  li
-                    a(href='/person/list/driver')
-                      | Driver list
-                  li
-                    a(href='/person/list/host')
-                      | Host list
-
+              li(class=pageURL == "/user" ? "active" : "")
+                a(href='/user')
+                  | User List
+              li(class=pageURL == "/student/list" ? "active" : "")
+                a(href='/student/list')
+                  | Student List
+              li(class=pageURL == "/person/list/driver" ? "active" : "")
+                a(href='/person/list/driver')
+                  | Driver List
+              li(class=pageURL == "/person/list/host" ? "active" : "")
+                a(href='/person/list/host')
+                  | Host List
               li(class=pageURL == "/mapping/driver" ? "active" : "")
                 a(href='/mapping/driver')
-                  |  Driver mapping
+                  |  Driver Mapping
               li(class=pageURL == "/mapping/host" ? "active" : "")
                 a(href='/mapping/host')
-                  |  Host mapping
+                  |  Host Mapping
               li(class=pageURL == "/person/register" ? "active" : "")
                 a(href='/person/register')
-                  |  Register person
+                  |  Register Person
               li(class=pageURL == "/tour" ? "active" : "")
                 a(href='/tour')
-                  |  Tour manage
+                  |  Manage Tour
           ul.nav.navbar-nav.navbar-right
             - if (user)
               li(class=pageURL === "/user/logout" ? "active" : "")
