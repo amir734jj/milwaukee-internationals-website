@@ -27,7 +27,7 @@ block content
               td= driver.email
               td= driver.phone
               td
-                a.btn.btn-danger(href='./delete/' + driver.personId) delete
+                a.btn.btn-danger.delete(href='./delete/' + driver.personId) delete
               
     - else
       .alert.alert-info

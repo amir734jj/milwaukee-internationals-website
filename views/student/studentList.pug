@@ -33,7 +33,7 @@ block content
               each interest in student.interests
                 span.label.label-primary.interest-list-item= interest
             td.hidden-xs
-              a.btn.btn-danger(href='./delete/' + student.studentId) delete
+              a.btn.btn-danger.delete(href='./delete/' + student.studentId) delete
   - else
     .alert.alert-info
       strong

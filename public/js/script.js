@@ -154,13 +154,25 @@ app.controller("hostMappingCtrl", ["$scope", "$http", "$window", function($scope
 
 }]);
 
-app.directive("jqPluginsDirective", ["$timeout", function($timeout) {
+app.directive("jqPluginsDirective", ["$timeout", "$window", function($timeout, $window) {
   return {
     scope: false, // use parent scope, directive should not create a scope for itself
     link: function(scope, elem, attr) {
       $timeout(function() {
         $("select").select2();
         $("form").validate();
+
+        $(".delete").on("click", function(event) {
+          var target = $(event.target).attr("href");
+
+          if (target) {
+            event.preventDefault();
+            if (confirm("Are you sure that you want to delete?")) {
+              $window.location.href = target;
+            }
+          }
+        });
+
       });
     }
   };

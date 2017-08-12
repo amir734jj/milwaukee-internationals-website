@@ -27,7 +27,7 @@ block content
               td= host.email
               td= host.phone
               td
-                a.btn.btn-danger(href='./delete/' + host.personId) delete
+                a.btn.btn-danger.delete(href='./delete/' + host.personId) delete
     - else
       .alert.alert-info
         strong
