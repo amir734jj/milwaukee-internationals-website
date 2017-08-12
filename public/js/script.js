@@ -169,10 +169,14 @@ app.directive("jqPluginsDirective", ["$timeout", function($timeout) {
 app.controller("checkInCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.countries = "All Countries";
 
-  $scope.getAllStudents = function() {
+  $scope.getAllStudents = function(callback) {
     $http.get(window.location.pathname + "/students").then(function(response) {
       $scope.students = response.data;
       $scope.allStudents = response.data;
+
+      if (angular.isFunction(callback)) {
+        callback();
+      }
     });
   };
 
@@ -181,8 +185,10 @@ app.controller("checkInCtrl", ["$scope", "$http", function($scope, $http) {
       studentId: student.studentId,
       attendance: !student.attendance
     }).then(function() {
-      $scope.attendance = !$scope.attendance;
-      $scope.updateTable();
+      // student.attendance = !student.attendance;
+      $scope.getAllStudents(function() {
+        $scope.updateTable();
+      });
     });
   };
 
