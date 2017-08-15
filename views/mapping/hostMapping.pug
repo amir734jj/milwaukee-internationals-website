@@ -5,7 +5,7 @@ block content
     .row.pull-right.col-md-3
       a.btn.btn-primary.btn-space(ng-click="getAllHostMappingPDF()")
         | Download pdf
-      a.btn.btn-primary.btn-space(ng-click="sendMailToHosts()")
+      a.btn.btn-primary.btn-space.delete(ng-click="sendMailToHosts()", data-message="Are you sure to send email?")
         | Send Mapping
         
     br

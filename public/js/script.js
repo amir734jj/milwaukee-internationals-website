@@ -176,10 +176,11 @@ app.directive("jqPluginsDirective", ["$timeout", "$window", function($timeout, $
 
         $(".delete").on("click", function(event) {
           var target = $(event.target).attr("href");
+          var message = $(event.target).data("message") || "Are you sure that you want to delete?";
 
           if (target) {
             event.preventDefault();
-            if (confirm("Are you sure that you want to delete?")) {
+            if (confirm(message)) {
               $window.location.href = target;
             }
           }
