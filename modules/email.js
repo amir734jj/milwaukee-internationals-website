@@ -89,10 +89,6 @@ module.exports = function(smtpTransport, rootURL) {
 
 
   this.sendMailToHosts = function(hostsBucket) {
-    console.log("HERE!!!!!!!!!!!!!!!!!!!!!!!!!");
-    console.log(hostsBucket);
-
-
     hostsBucket.map(function(host) {
       var mail = {
         from: "Milwaukee Internationals <tourofmilwaukee@gmail.com>",
@@ -100,21 +96,26 @@ module.exports = function(smtpTransport, rootURL) {
         subject: "Tour of Milwaukee - Assigned Drivers",
         text: "Email confirmation for the Tour of Milwaukee",
         html: _.template("                                                                                \
-        <p> This is an automatically generated email. </p> \
-        <p> ----------------------------------------- </p> \
-        <br>                                    \
+        <p> This is an automatically generated email. </p>                                                \
+        <p> ----------------------------------------- </p>                                                \
+        <br>                                                                                              \
         <% if (drivers.length == 0) { %>                                                                  \
             <p>No driver is assigned to your home.</p>                                                    \
         <% } %>                                                                                           \
         <ul>                                                                                              \
         <% if (drivers.length > 0) { %>                                                                   \
             <% _.each(drivers, function(driver){ %>                                                       \
-              <li><%= driver.fullname %> (<%= driver.students.length %>)</li>                                                             \
+              <li>                                                                                        \
+                <%= driver.fullname %> ( No. of students: <%= driver.students.length %>):                 \
+                <% _.each(driver.students, function(student){ %>                                          \
+                    <li><%= student.fullname %>                                                           \
+                <% }); %>                                                                                 \
+              </li>                                                                                       \
             <% }); %>                                                                                     \
-        <% } %>                                                                                           \
-        </ul>                                                                                             \
-        <br>                                    \
-        <p> Thank you for hosting this year. Reply to this email will be sent automatically to the team.</p> \
+        <% } %>                                                                                                                \
+        </ul>                                                                                                                  \
+        <br>                                                                                                                   \
+        <p> Thank you for hosting this year. Reply to this email will be sent automatically to the team.</p>                   \
         <p> If you have any question or comment, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
         ")({
           drivers: host.drivers
