@@ -73,5 +73,38 @@ module.exports = function(smtpTransport, rootURL) {
     });
   };
 
+
+
+  this.sendMailToHosts = function(hostsBucket) {
+    console.log("HERE!!!!!!!!!!!!!!!!!!!!!!!!!");
+    console.log(hostsBucket);
+
+
+    hostsBucket.map(function(host) {
+      var mail = {
+        from: "Milwaukee Internationals <tourofmilwaukee@gmail.com>",
+        to: host.email,
+        subject: "Tour of Milwaukee - Confirmation",
+        text: "Email confirmation for the Tour of Milwaukee",
+        html: _.template("                                                                                \
+        <% if (drivers.length == 0) { %>                                                                  \
+            <p>No driver is assigned to your home.</p>                                                    \
+        <% } %>                                                                                           \
+        <ul>                                                                                              \
+        <% if (drivers.length > 0) { %>                                                                   \
+            <% _.each(drivers, function(driver){ %>                                                       \
+              <li><%= driver.fullname %></li>                                                             \
+            <% }); %>                                                                                     \
+        <% } %>                                                                                           \
+        </ul>                                                                                             \
+        ")({
+          drivers: host.drivers
+        })
+      };
+
+      self.sendMail(mail);
+    });
+  };
+
   return self;
 };
