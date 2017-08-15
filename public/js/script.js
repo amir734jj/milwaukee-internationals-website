@@ -2,10 +2,12 @@ var app = angular.module("myApp", ["ngTagsInput"]);
 
 app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($scope, $http, $window) {
 
-  $scope.sendMailToDrivers = function() {
-    $http.get("/mapping/driver/mail").then(function(){
-      alert("Mail to drivers was send!");
-    });
+  $scope.sendMailToDrivers = function(event) {
+    if (confirm($(event.target).data("message"))) {
+      $http.get("/mapping/driver/mail").then(function(){
+        alert("Mail to drivers was send!");
+      });
+    }
   };
 
   $scope.updateData = function() {
@@ -85,10 +87,12 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
 
 app.controller("hostMappingCtrl", ["$scope", "$http", "$window", function($scope, $http, $window) {
 
-  $scope.sendMailToHosts = function() {
-    $http.get("/mapping/host/mail").then(function(){
-      alert("Mail to hosts was send!");
-    });
+  $scope.sendMailToHosts = function(event) {
+    if (confirm($(event.target).data("message"))) {
+      $http.get("/mapping/host/mail").then(function(){
+        alert("Mail to hosts was send!");
+      });
+    }
   };
 
   $scope.updateData = function() {
