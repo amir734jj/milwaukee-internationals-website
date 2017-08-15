@@ -1,6 +1,7 @@
 var authentication = require('../modules/authentication');
 var express = require('express');
 var router = express.Router();
+var _ = require('underscore');
 
 /* GET student driver mapping page. */
 router.get('/', function(req, res, next) {
@@ -43,8 +44,21 @@ router.get('/list/json', function(req, res, next) {
 
 router.get('/mail', function(req, res, next) {
   authentication(req, function loggedIn() {
-    router.driverMappingCtrl.getAllMappings(function(list) {
-      global.mailService.sendMailToDrivers(list.driversBucket);
+    router.driverMappingCtrl.getAllMappings(function(driverList) {
+      router.hostMappingCtrl.getAllMappings(function(hostList) {
+
+        var retVal = driverList.driversBucket;
+
+        retVal = retVal.map((driver) => {
+          driver.host = _.find(hostList.hostsBucket, (host) => {
+            return _.findWhere(host.drivers, { personId: driver.personId});
+          });
+
+          return driver;
+        });
+
+        global.mailService.sendMailToDrivers(retVal);
+      });
     });
 
     res.send("Done!");

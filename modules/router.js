@@ -13,7 +13,7 @@ var routes = function(app, databaseModels, db) {
   var studentCtrl = require('../models/studentCtrl')(databaseModels, db, [studentRouter]);
   var personCtrl = require('../models/personCtrl')(databaseModels, db, [personRouter]);
   var driverMappingCtrl = require('../models/driverMappingCtrl')(databaseModels, db, [driverMappingRouter, hostMappingRouter]);
-  var hostMappingCtrl = require('../models/hostMappingCtrl')(databaseModels, db, [hostMappingRouter]);
+  var hostMappingCtrl = require('../models/hostMappingCtrl')(databaseModels, db, [driverMappingRouter, hostMappingRouter]);
   var tourCtrl = require('../models/tourCtrl')(databaseModels.studentModel, db, [tourRouter]);
 
   /* order is important here */

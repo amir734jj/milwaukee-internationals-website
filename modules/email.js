@@ -70,15 +70,19 @@ module.exports = function(smtpTransport, rootURL) {
         <% }); %>                                                               \
         </ul>                                                                   \
         <br>                                                                    \
-        <br>                                                                    \
-        <p> Host Name: <%= host.fullname %> </p>                                \
-        <p> Host Name: <%= host.address %> </p>                                 \
+        <% if (host) { %>                                                       \
+          <p> Host Name: <%= host.fullname %> </p>                              \
+          <p> Host Contact: <%= host.phone %> </p>                              \
+          <p> Host Address: <%= host.address %> </p>                            \
+        <% } %>                                                                 \
         <br>                                                                    \
         <br>                                                                    \
         <p> Thank you for helping out this year. Reply to this email will be sent automatically to the team.</p> \
         <p> If you have any question or comment, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
         ")({
-          students: driver.students
+          "students": driver.students,
+          "host": driver.host,
+          "driver": driver
         })
       };
 
@@ -98,7 +102,6 @@ module.exports = function(smtpTransport, rootURL) {
         html: _.template("                                                                                \
         <p> This is an automatically generated email. </p>                                                \
         <p> ----------------------------------------- </p>                                                \
-        <br>                                                                                              \
         <% if (drivers.length == 0) { %>                                                                  \
             <p>No driver is assigned to your home.</p>                                                    \
         <% } %>                                                                                           \
