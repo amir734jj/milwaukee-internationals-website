@@ -132,5 +132,28 @@ module.exports = function(smtpTransport, rootURL) {
     });
   };
 
+
+  this.sendMailRegisterPerson = function(person) {
+    var mail = {
+      from: "Milwaukee Internationals <tourofmilwaukee@gmail.com>",
+      to: person.email,
+      subject: "Tour of Milwaukee - Signup Confirmation",
+      text: "Email confirmation for the Tour of Milwaukee",
+      html: _.template("                                                                                \
+      <p> This is an automatically generated email. </p>                                                \
+      <p> ----------------------------------------- </p>                                                \
+      <p> <%= person.fullname %></p>                                                                    \
+      <p> <%= person.role %></p>                                                                        \
+      <br>                                                                                                                   \
+      <p> Thank you for hosting this year. Reply to this email will be sent automatically to the team.</p>                   \
+      <p> If you have any question or comment, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
+      ")({
+        "person": person
+      })
+    };
+
+    self.sendMail(mail);
+  };
+
   return self;
 };

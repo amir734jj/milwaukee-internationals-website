@@ -19,6 +19,7 @@ router.get('/register', function(req, res, next) {
 router.post('/register', function(req, res, next) {
   authentication(req, function loggedIn() {
     router.personCtrl.addPerson(req.body, function() {
+      global.mailService.sendMailRegisterPerson(req.body);
       res.redirect("/");
     });
   }, function loggedOut() {
