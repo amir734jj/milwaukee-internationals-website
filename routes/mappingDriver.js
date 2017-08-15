@@ -42,10 +42,7 @@ router.get('/list/json', function(req, res, next) {
 
 
 router.get('/mail', function(req, res, next) {
-
-  console.log("HERE!!!!!!!!!!!!!!! in router");
   authentication(req, function loggedIn() {
-
     router.driverMappingCtrl.getAllMappings(function(list) {
       global.mailService.sendMailToDrivers(list.driversBucket);
     });

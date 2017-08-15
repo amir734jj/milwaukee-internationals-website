@@ -2,9 +2,14 @@ extends ../layout
 
 block content
   .row(ng-controller="hostMappingCtrl")
-    .row
-      a.btn.btn-primary.pull-right(ng-click="getAllHostMappingPDF()")
+    .row.pull-right.col-md-3
+      a.btn.btn-primary.btn-space(ng-click="getAllHostMappingPDF()")
         | Download pdf
+      a.btn.btn-primary.btn-space(ng-click="sendMailToHosts()")
+        | Send Mapping
+        
+    br
+          
     hr
 
     .col-sm-12

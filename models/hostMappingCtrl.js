@@ -63,9 +63,6 @@ module.exports = function(databaseModels, db, injectTo) {
                 });
               });
 
-              console.log("after");
-              console.log(host.drivers);
-
               self.connectedDrivers = self.connectedDrivers.concat(host.drivers);
 
               return host;

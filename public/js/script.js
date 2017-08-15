@@ -85,6 +85,12 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
 
 app.controller("hostMappingCtrl", ["$scope", "$http", "$window", function($scope, $http, $window) {
 
+  $scope.sendMailToHosts = function() {
+    $http.get("/mapping/host/mail").then(function(){
+      alert("Mail to hosts was send!");
+    });
+  };
+
   $scope.updateData = function() {
     $http.get(window.location.pathname + "/list/json").then(function(response) {
       var data = response.data;

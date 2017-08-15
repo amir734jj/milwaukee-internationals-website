@@ -1,6 +1,7 @@
 var authentication = require('../modules/authentication');
 var express = require('express');
 var router = express.Router();
+var _ = require('underscore');
 
 
 /* GET student driver mapping page. */
@@ -45,17 +46,32 @@ router.get('/list/json', function(req, res, next) {
 
 
 
+router.get('/mail', function(req, res, next) {
+  authentication(req, function loggedIn() {
+    router.hostMappingCtrl.getAllMappings(function(hostList) {
+      router.driverMappingCtrl.getAllMappings(function(driverList) {
+        var retVal = hostList.hostsBucket;
 
+        retVal = retVal.map((host) => {
+            host.drivers = host.drivers.map((driver) => {
+              driver.students = _.findWhere(driverList.driversBucket, { personId: driver.personId }).students;
 
+              return driver;
+            });
 
+            return host;
+        });
 
-// router.get('/student/host', function(req, res, next) {
-//   authentication(req, function loggedIn() {
-//     res.render("mapping/hostMapping");
-//   }, function loggedOut() {
-//     res.redirect("/");
-//   });
-// });
+        global.mailService.sendMailToHosts(retVal);
+      });
+    });
+
+    res.send("Done!");
+
+  }, function loggedOut() {
+    res.redirect("/");
+  });
+});
 
 
 
