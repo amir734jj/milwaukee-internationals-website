@@ -110,7 +110,7 @@ module.exports = function(smtpTransport, rootURL) {
                 <%= driver.fullname %> ( No. of students: <%= driver.students.length %>):                 \
                 <ul>                                                                                      \
                   <% _.each(driver.students, function(student){ %>                                        \
-                      <li><%= student.fullname %></li>                                                    \
+                      <li><%= student.fullname %> (<%= student.country %>)</li>                           \
                   <% }); %>                                                                               \
                 </ul>                                                                                     \
               </li>                                                                                       \
