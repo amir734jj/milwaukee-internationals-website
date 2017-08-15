@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var countries = require('../constants/countries.json');
 var universities = require('../constants/universities.json');
+var _ = require('underscore');
 
 var moment = require('moment');
 
@@ -27,6 +28,9 @@ router.post('/register', function(req, res, next) {
 router.get('/list', function(req, res, next) {
   authentication(req, function isLoggedIn() {
     router.studentCtrl.getAllStudents(function successCallback(students) {
+
+      students = _.sortBy(students, "fullname");
+
       res.render("student/studentList", {
         "students": students.map(student => {
           student.interests = JSON.parse(student.interests);

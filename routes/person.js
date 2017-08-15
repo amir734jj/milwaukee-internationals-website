@@ -62,7 +62,7 @@ router.get('/list/delete/:id', function(req, res, next) {
     router.personCtrl.deletePerson({
       personId: req.params.id
     }, function() {
-      res.redirect(req.originalUrl);
+      res.redirect("/person/list/driver");
     });
   }, function loggedOut() {
     res.redirect("/");

@@ -15,7 +15,7 @@ block content
             | Student without Drivers
         .panel-body
           .list-group
-            .list-group-item.clearfix(ng-repeat="student in studentsBucket")
+            .list-group-item.clearfix(ng-repeat="student in studentsBucket", ng-class="student.attendance ? 'list-group-item-success' : ''")
               | {{student.fullname}}
               .pull-right
                 .form-group.form-inline
@@ -42,7 +42,7 @@ block content
 
               .col-sm-6
                 .list-group
-                  .list-group-item.clearfix(ng-repeat="student in driver.students")
+                  .list-group-item.clearfix(ng-repeat="student in driver.students", ng-class="student.attendance ? 'list-group-item-success' : 'list-group-item-danger'")
                     div.pull-left.vcenter
                       | {{student.fullname}}
                     span.pull-right

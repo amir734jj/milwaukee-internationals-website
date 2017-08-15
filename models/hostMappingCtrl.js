@@ -57,9 +57,6 @@ module.exports = function(databaseModels, db, injectTo) {
                 "hostId": host.personId
               });
 
-              console.log("before");
-              console.log(host.drivers);
-
               host.drivers = host.drivers.map((driver) => {
                 return _.findWhere(self.drivers, {
                   "personId": driver.driverId

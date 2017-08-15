@@ -44,6 +44,9 @@ module.exports = function(databaseModels, db, injectTo) {
           self.drivers = cloneDeep(drivers);
           self.connectedStudents = [];
 
+          self.students = _.sortBy(self.students, "fullname");
+          self.drivers = _.sortBy(self.drivers, "fullname");
+
           databaseModels.studentDriverMappingModel.findAll({
             raw: true
           }).then((maps) => {

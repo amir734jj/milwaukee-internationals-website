@@ -56,7 +56,7 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
         var str = "Driver: " + driver.fullname + " ( available: " + (driver.totalSeats - driver.students.length) + " )" + "\n\n";
 
         str += stringTable.create(driver.students.map(function(student) {
-          return subsetAttr(["fullname", "country", "email", "university", "major"], student);
+          return subsetAttr(["fullname", "country", "email", "university", "major", "attendance"], student);
         }));
 
         doc.text(20, 20, str);
