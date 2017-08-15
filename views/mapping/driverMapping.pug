@@ -49,7 +49,7 @@ block content
           .list-group
             .container-fluid
               .row
-                .list-group-item.clearfix.col-lg-4.col-md-6.col-sm-12(ng-repeat="student in studentsBucket", ng-class="student.attendance ? 'list-group-item-success' : ''")
+                .list-group-item.clearfix.col-lg-6.col-md-6.col-sm-12(ng-repeat="student in studentsBucket", ng-class="student.attendance ? 'list-group-item-success' : ''")
                   | {{student.fullname}}
                   .pull-right
                     .form-group.form-inline
