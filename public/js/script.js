@@ -180,8 +180,13 @@ app.directive("jqPluginsDirective", ["$timeout", "$window", function($timeout, $
 
           if (target || $(event.target).data("message")) {
             event.preventDefault();
+
             if (confirm(message)) {
               $window.location.href = target;
+            } else {
+              event.stopPropagation();
+              event.stopImmediatePropagation();
+              return false;
             }
           }
         });
