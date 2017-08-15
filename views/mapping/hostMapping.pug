@@ -6,7 +6,36 @@ block content
       a.btn.btn-primary.pull-right(ng-click="getAllHostMappingPDF()")
         | Download pdf
     hr
-    .col-sm-6
+
+    .col-sm-12
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title
+            | Hosts and Assigned Drivers
+        .panel-body
+          .container-fluid
+            .row
+              .panel.panel-default.col-lg-4.col-md-6.col-sm-12(ng-repeat="host in hostsBucket")
+                .row
+                  .col-sm-6
+                    h4.panel-heading
+                      | {{host.fullname}}
+                      .small
+                        | (capacity = {{host.maxGuests}}})
+                  .col-sm-6
+                    .list-group
+                      .list-group-item.clearfix(ng-repeat="driver in host.drivers")
+                        div.pull-left.vcenter
+                          | {{driver.fullname}}
+                        span.pull-right
+                          a.btn.btn-danger.pull-right(ng-click="deleteMap(driver.personId, host.personId)")
+                            span.glyphicon.glyphicon-remove
+
+                      .list-group-item.list-group-item-warning(ng-show="!host.drivers.length")
+                        | This host does not have any drivers
+
+
+    .col-sm-12
       .panel.panel-primary
         .panel-heading
           h3.panel-title
@@ -24,27 +53,3 @@ block content
                       | {{host.fullname}}
                   a.btn.btn-success(ng-click="addMap(driver.personId, driver.hostId)")
                     span.glyphicon.glyphicon-plus
-    .col-sm-6
-      .panel.panel-primary
-        .panel-heading
-          h3.panel-title
-            | Hosts and Assigned Drivers
-        .panel-body
-          .panel.panel-default(ng-repeat="host in hostsBucket")
-            .row
-              .col-sm-6
-                h4.panel-heading
-                  | {{host.fullname}}
-                  .small
-                    | (capacity = {{host.maxGuests}}})
-              .col-sm-6
-                .list-group
-                  .list-group-item.clearfix(ng-repeat="driver in host.drivers")
-                    div.pull-left.vcenter
-                      | {{driver.fullname}}
-                    span.pull-right
-                      a.btn.btn-danger.pull-right(ng-click="deleteMap(driver.personId, host.personId)")
-                        span.glyphicon.glyphicon-remove
-
-                  .list-group-item.list-group-item-warning(ng-show="!host.drivers.length")
-                    | This host does not have any drivers

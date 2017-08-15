@@ -159,7 +159,7 @@ app.directive("jqPluginsDirective", ["$timeout", "$window", function($timeout, $
     scope: false, // use parent scope, directive should not create a scope for itself
     link: function(scope, elem, attr) {
       $timeout(function() {
-        $("select").select2();
+        $("select").select2({ width: '100%' });
         $("form").validate();
 
         $(".delete").on("click", function(event) {
