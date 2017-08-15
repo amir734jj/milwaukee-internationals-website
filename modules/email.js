@@ -102,14 +102,17 @@ module.exports = function(smtpTransport, rootURL) {
         <% if (drivers.length == 0) { %>                                                                  \
             <p>No driver is assigned to your home.</p>                                                    \
         <% } %>                                                                                           \
+        <h3>List of drivers and assigned students</h3>                                                    \
         <ul>                                                                                              \
         <% if (drivers.length > 0) { %>                                                                   \
             <% _.each(drivers, function(driver){ %>                                                       \
               <li>                                                                                        \
                 <%= driver.fullname %> ( No. of students: <%= driver.students.length %>):                 \
-                <% _.each(driver.students, function(student){ %>                                          \
-                    <li><%= student.fullname %>                                                           \
-                <% }); %>                                                                                 \
+                <ul>                                                                                      \
+                  <% _.each(driver.students, function(student){ %>                                        \
+                      <li><%= student.fullname %></li>                                                    \
+                  <% }); %>                                                                               \
+                </ul>                                                                                     \
               </li>                                                                                       \
             <% }); %>                                                                                     \
         <% } %>                                                                                                                \
