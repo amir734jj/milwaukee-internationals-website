@@ -178,7 +178,7 @@ app.directive("jqPluginsDirective", ["$timeout", "$window", function($timeout, $
           var target = $(event.target).attr("href");
           var message = $(event.target).data("message") || "Are you sure that you want to delete?";
 
-          if (target) {
+          if (target || $(event.target).data("message")) {
             event.preventDefault();
             if (confirm(message)) {
               $window.location.href = target;
