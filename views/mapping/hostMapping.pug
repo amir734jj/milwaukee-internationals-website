@@ -42,14 +42,16 @@ block content
             | Drivers without Hosts
         .panel-body
           .list-group
-            .list-group-item.clearfix(ng-repeat="driver in driversBucket")
-              | {{driver.fullname}}
-              .pull-right
-                .form-group.form-inline
-                  label
-                    | Select Host:&nbsp;&nbsp;
-                  select.form-control(ng-model="driver.hostId")
-                    option(value="{{host.personId}}", ng-repeat="host in allAvailableHosts")
-                      | {{host.fullname}}
-                  a.btn.btn-success(ng-click="addMap(driver.personId, driver.hostId)")
-                    span.glyphicon.glyphicon-plus
+            .container-fluid
+              .row
+                .list-group-item.clearfix.col-lg-4.col-md-6.col-sm-12(ng-repeat="driver in driversBucket")
+                  | {{driver.fullname}}
+                  .pull-right
+                    .form-group.form-inline
+                      label
+                        | Select Host:&nbsp;&nbsp;
+                      select.form-control(ng-model="driver.hostId")
+                        option(value="{{host.personId}}", ng-repeat="host in allAvailableHosts")
+                          | {{host.fullname}}
+                      a.btn.btn-success(ng-click="addMap(driver.personId, driver.hostId)")
+                        span.glyphicon.glyphicon-plus
