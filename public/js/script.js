@@ -2,6 +2,12 @@ var app = angular.module("myApp", ["ngTagsInput"]);
 
 app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($scope, $http, $window) {
 
+  $scope.sendMailToDrivers = function() {
+    $http.get("/mapping/driver/mail").then(function(){
+      alert("Mail to drivers was send!");
+    });
+  };
+
   $scope.updateData = function() {
     $http.get(window.location.pathname + "/list/json").then(function(response) {
       var data = response.data;

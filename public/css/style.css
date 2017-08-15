@@ -23,6 +23,11 @@ a {
   color: #00B7FF;
 }
 
+
+.btn-space {
+    margin-right: 5px;
+}
+
 .interest-list {
   display: flex;
   flex-wrap: wrap;

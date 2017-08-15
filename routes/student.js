@@ -19,7 +19,7 @@ router.get('/register', function(req, res, next) {
 /* POST student page. */
 router.post('/register', function(req, res, next) {
   router.studentCtrl.addStudent(req.body, function successCallback(student) {
-    global.mailService(req.body.email, req.body);
+    global.mailService.sendMailToStudent(req.body.email, req.body);
     res.redirect("/student/confirmation");
   });
 });

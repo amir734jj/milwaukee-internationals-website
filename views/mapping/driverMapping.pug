@@ -2,9 +2,12 @@ extends ../layout
 
 block content
   .row(ng-controller="driverMappingCtrl")
-    .row
-      a.btn.btn-primary.pull-right(ng-click="getAllDriverMappingPDF()")
+    .row.pull-right.col-md-3
+      a.btn.btn-primary.btn-space(ng-click="getAllDriverMappingPDF()")
         | Download pdf
+      a.btn.btn-primary.btn-space(ng-click="sendMailToDrivers()")
+        | Send Mapping
+    br
 
     hr
 
@@ -35,9 +38,6 @@ block content
 
                       .list-group-item.list-group-item-warning(ng-show="!driver.students.length")
                         | This driver does not have any students
-
-
-
 
 
     .col-sm-12

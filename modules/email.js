@@ -1,8 +1,24 @@
 var _ = require('underscore');
 
 module.exports = function(smtpTransport, rootURL) {
+  var self = this;
 
-  return function(emailAddress, studentAttr) {
+  this.sendMail = function(mail) {
+    smtpTransport.sendMail(mail, function(error, response) {
+      if (error) {
+        console.log("Email service is broken!" + error);
+      }
+
+      console.log("##########---EMAIL---###########");
+      console.log(error);
+      console.log(response);
+      console.log("##########---EMAIL---###########");
+
+      smtpTransport.close();
+    });
+  };
+
+  this.sendMailToStudent = function(emailAddress, studentAttr) {
     var mail = {
       from: "Milwaukee Internationals <tourofmilwaukee@gmail.com>",
       to: emailAddress,
@@ -26,17 +42,36 @@ module.exports = function(smtpTransport, rootURL) {
       ")(studentAttr)
     };
 
-    smtpTransport.sendMail(mail, function(error, response) {
-      if (error) {
-        console.log("Email service is broken!" + error);
+    self.sendMail(mail);
+
+  };
+
+
+  this.sendMailToDrivers = function(driversBucket) {
+    driversBucket.map(function(driver) {
+      if (!driver.students.length) {
+        return;
       }
 
-      console.log("##########---EMAIL---###########");
-      console.log(error);
-      console.log(response);
-      console.log("##########---EMAIL---###########");
+      var mail = {
+        from: "Milwaukee Internationals <tourofmilwaukee@gmail.com>",
+        to: driver.email,
+        subject: "Tour of Milwaukee - Confirmation",
+        text: "Email confirmation for the Tour of Milwaukee",
+        html: _.template("                                                                                \
+        <ul>                                                                                              \
+        <% _.each(students, function(student){ %>                                                         \
+            <li><%= student.fullname %></li>                                                              \
+        <% }); %>                                                                                         \
+        </ul>                                                                                             \
+        ")({
+          students: driver.students
+        })
+      };
 
-      smtpTransport.close();
+      self.sendMail(mail);
     });
-  }
-}
+  };
+
+  return self;
+};

@@ -41,19 +41,21 @@ router.get('/list/json', function(req, res, next) {
 });
 
 
+router.get('/mail', function(req, res, next) {
 
+  console.log("HERE!!!!!!!!!!!!!!! in router");
+  authentication(req, function loggedIn() {
 
+    router.driverMappingCtrl.getAllMappings(function(list) {
+      global.mailService.sendMailToDrivers(list.driversBucket);
+    });
 
+    res.send("Done!");
 
-
-// router.get('/student/host', function(req, res, next) {
-//   authentication(req, function loggedIn() {
-//     res.render("mapping/hostMapping");
-//   }, function loggedOut() {
-//     res.redirect("/");
-//   });
-// });
-
+  }, function loggedOut() {
+    res.redirect("/");
+  });
+});
 
 
 module.exports = router;
