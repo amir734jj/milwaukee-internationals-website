@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ["ngTagsInput", "ui.toggle"]);
+var app = angular.module("myApp", ["ngTagsInput", "ui.toggle", "tableSort"]);
 
 app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($scope, $http, $window) {
 

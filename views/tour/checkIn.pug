@@ -28,15 +28,15 @@ block content
 
     hr
 
-    table.table.table-bordered.table-hover
+    table.table.table-bordered.table-hover(ts-wrapper)
       thead
         tr
-          th Fullname
-          th Country
-          th.hidden-xs Major
-          th Checked-in
+          th(ts-criteria="fullname", ts-default) Fullname
+          th(ts-criteria="country") Country
+          th.hidden-xs(ts-criteria="major") Major
+          th(ts-criteria="attendance") Checked-in
       tbody
-        tr(ng-repeat="student in students")
+        tr(ng-repeat="student in students", ts-repeat)
           td
             | {{student.fullname}}
           td
