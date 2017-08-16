@@ -23,7 +23,8 @@ module.exports = function(app, expressBundles) {
         'css/bootstrap-theme.css',
         'css/ng-tags-input.css',
         'css/ng-tags-input.bootstrap.css',
-        'css/select2.css'
+        'css/select2.css',
+        'css/angular-bootstrap-toggle.css'
       ]).map(process).concat([
         'css/style.css'
       ]),
@@ -35,7 +36,8 @@ module.exports = function(app, expressBundles) {
         'js/select2.js',
         'js/jquery.validate.js',
         'js/jspdf.js',
-        'js/stringTable.js'
+        'js/stringTable.js',
+        'js/angular-bootstrap-toggle.js'
       ]).map(process).concat([
         'js/script.js'
       ])

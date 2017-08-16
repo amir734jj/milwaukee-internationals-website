@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ["ngTagsInput"]);
+var app = angular.module("myApp", ["ngTagsInput", "ui.toggle"]);
 
 app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($scope, $http, $window) {
 
@@ -217,7 +217,7 @@ app.controller("checkInCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.changeAttendance = function(student) {
     $http.post(window.location.pathname + "/check-in", {
       studentId: student.studentId,
-      attendance: !student.attendance
+      attendance: student.attendance
     }).then(function() {
       // student.attendance = !student.attendance;
       $scope.getAllStudents(function() {

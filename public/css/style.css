@@ -1,12 +1,9 @@
-
 html {
   height: 100%;
   box-sizing: border-box;
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: inherit;
 }
 
@@ -23,9 +20,27 @@ a {
   color: #00B7FF;
 }
 
+.toggle {
+  width: 80%;
+}
+
+.slow .toggle-group {
+  transition: left 0.7s;
+  -webkit-transition: left 0.7s;
+}
+
+.fast .toggle-group {
+  transition: left 0.1s;
+  -webkit-transition: left 0.1s;
+}
+
+.quick .toggle-group {
+  transition: none;
+  -webkit-transition: none;
+}
 
 .btn-space {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .interest-list {
@@ -97,8 +112,8 @@ p.banner-item {
 }
 
 .vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-    margin: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+  margin: 10px;
 }

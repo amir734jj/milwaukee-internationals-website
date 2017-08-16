@@ -33,7 +33,7 @@ block content
         tr
           th Fullname
           th Country
-          th Major
+          th.hidden-xs Major
           th Checked-in
       tbody
         tr(ng-repeat="student in students")
@@ -41,9 +41,7 @@ block content
             | {{student.fullname}}
           td
             | {{student.country}}
-          td
+          td.hidden-xs
             | {{student.major}}
-          td
-            .checkbox
-              label.big-checkbox
-                input(type='checkbox', ng-true-value="true" ng-false-value="false", ng-checked="student.attendance ? true : false", ng-click="changeAttendance(student)")
+          td.col-xs-4.col-sm-2
+            toggle.fast(ng-model="student.attendance", ng-change="changeAttendance(student)", on="Present", off="Absent", size="btn", onstyle="btn-success" offstyle="btn-default")
