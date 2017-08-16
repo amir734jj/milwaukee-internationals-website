@@ -13,20 +13,20 @@ block content
       table.table.table-hover
         thead
           tr
-            th Driver ID
+            th.hidden-xs Driver ID
             th Fullname
             th Email
             th Phone
-            th Action
+            th.hidden-xs Action
 
         each driver in drivers
           tbody
             tr
-              td= driver.displayId
+              td.hidden-xs= driver.displayId
               td= driver.fullname
               td= driver.email
               td= driver.phone
-              td
+              td.hidden-xs
                 a.btn.btn-danger.delete(href='./delete/' + driver.personId) delete
               
     - else

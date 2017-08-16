@@ -11,11 +11,11 @@ block content
         tr
           th.hidden-xs Date
           th Fullname
-          th major
+          th.hidden-xs major
           th.hidden-xs Email
           th Phone
           th Country
-          th University
+          th.hidden-xs University
           th.hidden-xs Interest
           th.hidden-xs Action
 
@@ -24,11 +24,11 @@ block content
           tr
             td.hidden-xs= student.date
             td= student.fullname
-            td= student.major
+            td.hidden-xs= student.major
             td.hidden-xs= student.email
             td= student.phone
             td= student.country
-            td= student.university
+            td.hidden-xs= student.university
             td.hidden-xs.interest-list
               each interest in student.interests
                 span.label.label-primary.interest-list-item= interest
