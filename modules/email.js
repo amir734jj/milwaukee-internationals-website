@@ -142,11 +142,14 @@ module.exports = function(smtpTransport, rootURL) {
       html: _.template("                                                                                \
       <p> This is an automatically generated email. </p>                                                \
       <p> ----------------------------------------- </p>                                                \
-      <p> <%= person.fullname %></p>                                                                    \
-      <p> <%= person.role %></p>                                                                        \
+      <p> Name: <%= person.fullname %></p>                                                                    \
+      <p> Role: <%= person.role.charAt(0).toUpperCase() + person.role.slice(1) %></p>                                        \
+      <p> Total Seats: <%= person.totalSeats %></p>                                        \
       <br>                                                                                                                   \
-      <p> Thank you for hosting this year. Reply to this email will be sent automatically to the team.</p>                   \
-      <p> If you have any question or comment, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
+      <p> Thank you for helping with the tour this year. Reply to this email will be sent automatically to the team.</p>     \
+      <p> For questions, comments and feedback, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
+      <br>                                                                                                                   \
+      <p> Blessings, </p> \
       ")({
         "person": person
       })
