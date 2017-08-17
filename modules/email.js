@@ -144,11 +144,11 @@ module.exports = function(smtpTransport, rootURL) {
       <p> ----------------------------------------- </p>                                                \
       <p> Name: <%= person.fullname %></p>                                                                    \
       <p> Role: <%= person.role.charAt(0).toUpperCase() + person.role.slice(1) %></p>                                        \
-      <% if (person.role === "host") { %>                                                                  \
+      <% if (person.role == "host") { %>                                                                  \
           <p> Address: <%= person.address %></p>                                        \
       <% } %>   \
-      <% if (person.role === "driver") { %>                                                                  \
-      <p> Total Seats: <%= person.totalSeats %></p>                                        \
+      <% if (person.role == "driver") { %>                                                                  \
+          <p> Total Seats: <%= person.totalSeats %></p>                                        \
       <% } %>   \
       <br>                                                                                                                   \
       <br>                                                                                                                   \
