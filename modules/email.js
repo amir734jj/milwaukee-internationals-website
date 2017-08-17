@@ -77,8 +77,8 @@ module.exports = function(smtpTransport, rootURL) {
         <% } %>                                                                 \
         <br>                                                                    \
         <br>                                                                    \
-        <p> Thank you for helping out this year. Reply to this email will be sent automatically to the team.</p> \
-        <p> If you have any question or comment, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
+        <p> Thank you for helping with the tour this year. Reply to this email will be sent automatically to the team.</p>      \
+        <p> For questions, comments and feedback, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
         ")({
           "students": driver.students,
           "host": driver.host,
@@ -121,8 +121,8 @@ module.exports = function(smtpTransport, rootURL) {
         <% } %>                                                                                                                \
         </ul>                                                                                                                  \
         <br>                                                                                                                   \
-        <p> Thank you for hosting this year. Reply to this email will be sent automatically to the team.</p>                   \
-        <p> If you have any question or comment, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
+        <p> Thank you for helping with the tour this year. Reply to this email will be sent automatically to the team.</p>                   \
+        <p> For questions, comments and feedback, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
         ")({
           drivers: host.drivers
         })
@@ -146,6 +146,13 @@ module.exports = function(smtpTransport, rootURL) {
       <p> Role: <%= person.role.charAt(0).toUpperCase() + person.role.slice(1) %></p>                                        \
       <p> Total Seats: <%= person.totalSeats %></p>                                        \
       <br>                                                                                                                   \
+      <br>                                                                                                                   \
+      <p> 2017 Tour of Milwaukee</p> \
+      <p> Date: August 26, 2017</p> \
+      <p> Time: 12:30 noon (Brief orientation for drivers and navigators) </p> \
+      <p> Address: 2200 E Kenwood Blvd, Milwaukee, WI 53211 </p> \
+      <p> Location: Union Ballroom</p> \
+      <br>                                                                      \
       <p> Thank you for helping with the tour this year. Reply to this email will be sent automatically to the team.</p>     \
       <p> For questions, comments and feedback, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
       <br>                                                                                                                   \
