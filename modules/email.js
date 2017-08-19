@@ -154,7 +154,7 @@ module.exports = function(smtpTransport, rootURL) {
       <br>                                                                                                                   \
       <p> 2017 Tour of Milwaukee</p> \
       <p> Date: August 26, 2017</p> \
-      <p> Time: 12:30 noon (Brief orientation for drivers and navigators) </p> \
+      <p> Time: 12:30 pm (Brief orientation only for drivers and navigators) </p> \
       <p> Address: 2200 E Kenwood Blvd, Milwaukee, WI 53211 </p> \
       <p> Location: Union Ballroom</p> \
       <br>                                                                      \
