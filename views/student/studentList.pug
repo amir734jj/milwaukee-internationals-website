@@ -6,30 +6,30 @@ block content
       a.btn.btn-primary.pull-right(ng-click="getAllStudentsPDF()")
         | Download pdf
       
-    table.table.table-hover
+    table.table.table-hover(data-toggle="table")
       thead
         tr
-          th.hidden-xs Date
-          th Fullname
-          th.hidden-xs major
-          th.hidden-xs Email
+          th.hidden-sm.hidden-xs Date
+          th(data-sortable="true") Fullname
+          th.hidden-xs(data-sortable="true") major
+          th.hidden-xs(data-sortable="true") Email
           th Phone
-          th Country
-          th.hidden-xs University
-          th.hidden-xs Interest
+          th(data-sortable="true") Country
+          th.hidden-xs(data-sortable="true") University
+          th.hidden-sm.hidden-xs Interest
           th.hidden-xs Action
 
       each student in students
         tbody
           tr
-            td.hidden-xs= student.date
+            td.hidden-sm.hidden-xs= student.date
             td= student.fullname
             td.hidden-xs= student.major
             td.hidden-xs= student.email
             td= student.phone
             td= student.country
             td.hidden-xs= student.university
-            td.hidden-xs.interest-list
+            td.hidden-sm.hidden-xs.interest-list
               each interest in student.interests
                 span.label.label-primary.interest-list-item= interest
             td.hidden-xs

@@ -10,12 +10,12 @@ block content
       | List of Hosts
 
     - if (hosts.length)
-      table.table.table-hover
+      table.table.table-hover(data-toggle="table")
         thead
           tr
-            th.hidden-xs Host ID
-            th Fullname
-            th Email
+            th.hidden-xs(data-sortable="true") Host ID
+            th(data-sortable="true") Fullname
+            th(data-sortable="true") Email
             th Phone
             th.hidden-xs Action
             

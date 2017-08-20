@@ -10,12 +10,12 @@ block content
       | List of Drivers
 
     - if (drivers.length)
-      table.table.table-hover
+      table.table.table-hover(data-toggle="table")
         thead
           tr
-            th.hidden-xs Driver ID
-            th Fullname
-            th Email
+            th.hidden-xs(data-sortable="true") Driver ID
+            th(data-sortable="true") Fullname
+            th(data-sortable="true") Email
             th Phone
             th.hidden-xs Action
 
