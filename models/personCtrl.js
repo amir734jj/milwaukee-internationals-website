@@ -37,6 +37,7 @@ module.exports = function(databaseModels, db, injectTo) {
           "role": role
         }
       }).then((persons) => {
+        persons = _.sortBy(persons, "fullname");
         callback(persons);
       });
     },

@@ -23,6 +23,7 @@ module.exports = function(databaseModels, db, injectTo) {
     },
     getAllStudents: function(callback) {
       databaseModels.studentModel.findAll().then((students) => {
+        students = _.sortBy(students, "fullname");
         callback(students);
       });
     },
