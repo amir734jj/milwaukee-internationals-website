@@ -47,6 +47,9 @@ module.exports = function(databaseModels, db, injectTo) {
           self.hosts = cloneDeep(hosts);
           self.connectedDrivers = [];
 
+          self.hosts = _.sortBy(self.hosts, "fullname");
+          self.drivers = _.sortBy(self.drivers, "fullname");
+
           databaseModels.driverHostMappingModel.findAll({
             raw: true
           }).then((maps) => {

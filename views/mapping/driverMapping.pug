@@ -19,7 +19,7 @@ block content
         .panel-body
           .container-fluid
             .row
-              .panel.panel-default.col-lg-4.col-md-6.col-sm-12(ng-repeat="driver in driversBucket")
+              .panel.panel-default.col-xl-4.col-lg-6.col-md-6.col-sm-12(ng-repeat="driver in driversBucket")
                 .row
                   .col-sm-12
                     h4.panel-heading
@@ -50,7 +50,7 @@ block content
             .container-fluid
               .row
                 .list-group-item.clearfix.col-lg-6.col-md-6.col-sm-12(ng-repeat="student in studentsBucket", ng-class="student.attendance ? 'list-group-item-success' : ''")
-                  | {{student.fullname}}
+                  | {{student.fullname}} ({{student.country}})
                   .pull-right
                     .form-group.form-inline
                       label

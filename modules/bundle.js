@@ -21,6 +21,7 @@ module.exports = function(app, expressBundles) {
       'bundle.css': ([
         'css/bootstrap.css',
         'css/bootstrap-theme.css',
+        'css/bootstrap-xlgrid.css',
         'css/ng-tags-input.css',
         'css/ng-tags-input.bootstrap.css',
         'css/select2.css',
