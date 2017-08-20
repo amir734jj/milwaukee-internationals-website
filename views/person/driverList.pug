@@ -1,21 +1,25 @@
 extends ../layout
 
 block content
-  div(ng-controller="driverListCtrl")
-    a.btn.btn-primary.pull-right(ng-click="getAllDriversPDF()")
-      | Download pdf
+  .row(ng-controller="driverListCtrl")
+    .col-sm-12
+      h2.text-danger.text-center
+        | List of Drivers
+    .col-sm-6
+      p= drivers.length
+        |  drivers have registered
+    .col-sm-6
+      a.btn.btn-primary.pull-right(ng-click="getAllDriversPDF()")
+        | Download pdf
       
-  .container.page-header
-    h2.text-danger.text-center
-      | List of Drivers
-
+  .container
     - if (drivers.length)
-      table.table.table-hover(data-toggle="table")
+      table.table.table-hover
         thead
           tr
-            th.hidden-xs(data-sortable="true") Driver ID
-            th(data-sortable="true") Fullname
-            th(data-sortable="true") Email
+            th.hidden-xs Driver ID
+            th Fullname
+            th Email
             th Phone
             th.hidden-xs Action
 

@@ -1,21 +1,29 @@
 extends ../layout
 
 block content
-  - if (students.length)
-    .row(ng-controller="studentListCtrl")
+  .row(ng-controller="studentListCtrl")
+    .col-sm-12
+      h2.text-danger.text-center
+        | List of Students
+    .col-sm-6
+      p= students.length
+        |  students have registered
+    .col-sm-6
       a.btn.btn-primary.pull-right(ng-click="getAllStudentsPDF()")
         | Download pdf
-      
-    table.table.table-hover(data-toggle="table")
+        
+  .container
+  - if (students.length)
+    table.table.table-hover
       thead
         tr
           th.hidden-sm.hidden-xs Date
-          th(data-sortable="true") Fullname
-          th.hidden-xs(data-sortable="true") major
-          th.hidden-xs(data-sortable="true") Email
+          th Fullname
+          th.hidden-xs major
+          th.hidden-xs Email
           th Phone
-          th(data-sortable="true") Country
-          th.hidden-xs(data-sortable="true") University
+          th Country
+          th.hidden-xs University
           th.hidden-sm.hidden-xs Interest
           th.hidden-xs Action
 

@@ -26,8 +26,7 @@ module.exports = function(app, expressBundles) {
         'css/ng-tags-input.bootstrap.css',
         'css/select2.css',
         'css/angular-bootstrap-toggle.css',
-        'css/tablesort.css',
-        'css/bootstrap-table.css'
+        'css/tablesort.css'
       ]).map(process).concat([
         'css/style.css'
       ]),
@@ -41,8 +40,7 @@ module.exports = function(app, expressBundles) {
         'js/jspdf.js',
         'js/stringTable.js',
         'js/angular-bootstrap-toggle.js',
-        'js/angular-tablesort.js',
-        'js/bootstrap-table.js'
+        'js/angular-tablesort.js'
       ]).map(process).concat([
         'js/script.js'
       ])

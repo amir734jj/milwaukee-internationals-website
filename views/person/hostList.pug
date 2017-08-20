@@ -1,21 +1,25 @@
 extends ../layout
 
 block content
-  div(ng-controller="hostListCtrl")
-    a.btn.btn-primary.pull-right(ng-click="getAllHostsPDF()")
-      | Download pdf
+  .row(ng-controller="hostListCtrl")
+    .col-sm-12
+      h2.text-danger.text-center
+        | List of Hosts
+    .col-sm-6
+      p= hosts.length
+        |  hosts have registered
+    .col-sm-6
+      a.btn.btn-primary.pull-right(ng-click="getAllHostsPDF()")
+        | Download pdf
       
-  .container.page-header
-    h2.text-danger.text-center
-      | List of Hosts
-
+  .container
     - if (hosts.length)
-      table.table.table-hover(data-toggle="table")
+      table.table.table-hover
         thead
           tr
-            th.hidden-xs(data-sortable="true") Host ID
-            th(data-sortable="true") Fullname
-            th(data-sortable="true") Email
+            th.hidden-xs Host ID
+            th Fullname
+            th Email
             th Phone
             th.hidden-xs Action
             
