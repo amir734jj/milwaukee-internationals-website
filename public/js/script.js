@@ -229,6 +229,7 @@ app.controller("checkInCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.getStudentCountries = function() {
     $http.get(window.location.pathname + "/get-student-countries").then(function(response) {
       $scope.countries = ["All Countries"];
+      response.data.sort();
       $scope.countries = $scope.countries.concat(response.data);
       $scope.country = $scope.countries[0]
     });
