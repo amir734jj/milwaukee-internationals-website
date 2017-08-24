@@ -4,7 +4,7 @@ var router = express.Router();
 var _ = require('underscore');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/email', function(req, res, next) {
   authentication(req, function loggedIn() {
     res.render('utility/email');
   }, function loggedOut() {
