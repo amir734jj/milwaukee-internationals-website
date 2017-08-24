@@ -146,7 +146,7 @@ app.controller("hostMappingCtrl", ["$scope", "$http", "$window", function($scope
 
 
       hostsBucket.map(function(host, index) {
-        var str = "Host: " + host.fullname + " ( available: " + (host.maxGuests - host.drivers.length) + " )" + "\n\n";
+        var str = "Host: " + host.fullname + " ( available: " + (host.maxGuests - host.drivers.length) + " )  " + host.address + "\n\n";
 
         str += stringTable.create(host.drivers.map(function(driver) {
           return subsetAttr(["fullname", "email", "phone"], driver);
