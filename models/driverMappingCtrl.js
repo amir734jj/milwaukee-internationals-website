@@ -36,12 +36,13 @@ module.exports = function(databaseModels, db, injectTo) {
         self.students = students;
 
         databaseModels.personModel.findAll({
-          where: {
-            role: "driver"
-          },
           raw: true
-        }).then((drivers) => {
+        }).then((persons) => {
+          var drivers = _.where(persons, { role: "driver" });
+          var hosts = _.where(persons, { role: "host" });
+
           self.drivers = cloneDeep(drivers);
+          self.hosts = cloneDeep(hosts);
           self.connectedStudents = [];
 
           self.students = _.sortBy(self.students, "fullname");
@@ -49,31 +50,52 @@ module.exports = function(databaseModels, db, injectTo) {
 
           databaseModels.studentDriverMappingModel.findAll({
             raw: true
-          }).then((maps) => {
+          }).then((driverMaps) => {
 
-            var retVal = self.drivers.map((driver) => {
-              driver.students = _.where(maps, {
-                "driverId": driver.personId
-              });
+            databaseModels.driverHostMappingModel.findAll({
+              raw: true
+            }).then((hostMaps) => {
 
-              driver.students = driver.students.map((student) => {
-                return _.findWhere(self.students, {
-                  "studentId": student.studentId
+              self.drivers = self.drivers.map((driver) => {
+
+                var foundHostMap = _.findWhere(hostMaps, {
+                  "driverId": driver.personId
                 });
+
+                if (foundHostMap) {
+                  driver.host = _.findWhere(self.hosts, {
+                    "personId": foundHostMap.hostId
+                  });
+                }
+
+                return driver;
               });
 
-              self.connectedStudents = self.connectedStudents.concat(driver.students);
+              var retVal = self.drivers.map((driver) => {
+                driver.students = _.where(driverMaps, {
+                  "driverId": driver.personId
+                });
 
-              return driver;
-            });
+                driver.students = driver.students.map((student) => {
+                  return _.findWhere(self.students, {
+                    "studentId": student.studentId
+                  });
+                });
 
-            callback({
-              "driversBucket": retVal,
-              "studentsBucket": _.difference(self.students, self.connectedStudents),
-              "allDrivers": self.drivers,
-              "allAvailableDrivers": _.filter(retVal, (driver) => driver.students.length < driver.totalSeats),
-              "allStudents": self.students,
-              "maps": maps
+                self.connectedStudents = self.connectedStudents.concat(driver.students);
+
+                return driver;
+              });
+
+              callback({
+                "driversBucket": retVal,
+                "studentsBucket": _.difference(self.students, self.connectedStudents),
+                "allDrivers": self.drivers,
+                "allAvailableDrivers": _.filter(retVal, (driver) => driver.students.length < driver.totalSeats),
+                "allStudents": self.students,
+                "maps": driverMaps
+              });
+
             });
 
           });

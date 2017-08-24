@@ -59,6 +59,10 @@ a {
   margin-top: 50px !important;
 }
 
+.list-group-item{
+  padding: 3px !important;
+}
+
 p.banner-item {
   font-weight: 300 !important;
 }

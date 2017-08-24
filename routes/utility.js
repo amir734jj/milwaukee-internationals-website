@@ -35,7 +35,7 @@ router.post('/email', function(req, res, next) {
 
         global.sendMailUtility(emailList, req.body);
 
-        res.redirect("/utility");
+        res.redirect("/utility/email");
     });
   }, function loggedOut() {
     res.redirect("/");

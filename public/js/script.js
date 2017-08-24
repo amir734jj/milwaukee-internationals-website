@@ -4,7 +4,7 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
 
   $scope.sendMailToDrivers = function(event) {
     if (confirm($(event.target).data("message"))) {
-      $http.get("/mapping/driver/mail").then(function(){
+      $http.get("/mapping/driver/mail").then(function() {
         alert("Mail to drivers was send!");
       });
     }
@@ -63,6 +63,13 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
       driversBucket.map(function(driver, index) {
         var str = "Driver: " + driver.fullname + " ( available: " + (driver.totalSeats - driver.students.length) + " )" + "\n\n";
 
+        if (driver.host) {
+          str += "Host Name:" + driver.host.fullname + "\n";
+          str += "Host Address:" + driver.host.address + "\n";
+          str += "Host Contact:" + driver.host.phone + "\n";
+          str += "\n";
+        }
+
         str += stringTable.create(driver.students.map(function(student) {
           return subsetAttr(["fullname", "country", "email", "university", "major", "attendance"], student);
         }));
@@ -89,7 +96,7 @@ app.controller("hostMappingCtrl", ["$scope", "$http", "$window", function($scope
 
   $scope.sendMailToHosts = function(event) {
     if (confirm($(event.target).data("message"))) {
-      $http.get("/mapping/host/mail").then(function(){
+      $http.get("/mapping/host/mail").then(function() {
         alert("Mail to hosts was send!");
       });
     }
@@ -175,7 +182,9 @@ app.directive("jqPluginsDirective", ["$timeout", "$window", function($timeout, $
     scope: false, // use parent scope, directive should not create a scope for itself
     link: function(scope, elem, attr) {
       $timeout(function() {
-        $("select").select2({ width: '100%' });
+        $("select").select2({
+          width: '100%'
+        });
         $("form").validate();
 
         $(".delete").on("click", function(event) {
