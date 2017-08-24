@@ -12,19 +12,19 @@ block content
       .col-sm-9
         .checkbox
           label
-            input(type='checkbox', value='students')
+            input(type='checkbox', value='students', name="students")
             | Students
         .checkbox
           label
-            input(type='checkbox', value='drivers')
+            input(type='checkbox', value='drivers', name="drivers")
             | Drivers
         .checkbox
           label
-            input(type='checkbox', value='hosts')
+            input(type='checkbox', value='hosts', name="hosts")
             | Hosts
         .checkbox
           label
-            input(type='checkbox', value='users')
+            input(type='checkbox', value='users', name="users")
             | Users
 
     .form-group
@@ -35,7 +35,7 @@ block content
     .form-group
       label.control-label.col-sm-3(for='text') Text:
       .col-sm-9
-        textarea#text.form-control.summernote(type='text', name='text', placeholder='Enter text', rows='5', required)
+        textarea#text.form-control.summernote(type='text', name='text', placeholder='Enter text', rows='10', required)
 
     .form-group
       .col-sm-offset-3.col-sm-10
