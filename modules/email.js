@@ -117,8 +117,9 @@ module.exports = function(smtpTransport, rootURL) {
         subject: "Tour of Milwaukee - Assigned Drivers",
         text: "Email confirmation for the Tour of Milwaukee",
         html: _.template("                                                                                \
-        <p> This is an automatically generated email. </p>                                                \
-        <p> ----------------------------------------- </p>                                                \
+        <p> **This is an automatically generated email**</p>                                                \
+        <br>                                                                    \
+        <p> Hello <%= host.fullname %>,</p>                         \
         <% if (drivers.length == 0) { %>                                                                  \
             <p>No driver is assigned to your home.</p>                                                    \
         <% } %>                                                                                           \
@@ -141,7 +142,8 @@ module.exports = function(smtpTransport, rootURL) {
         <p> Thank you for helping with the tour this year. Reply to this email will be sent automatically to the team.</p>                   \
         <p> For questions, comments and feedback, please contact Asher Imtiaz (414-499-5360) or Marie Wilke (414-852-5132).</p> \
         ")({
-          drivers: host.drivers
+          "drivers": host.drivers,
+          "host": host
         })
       };
 
