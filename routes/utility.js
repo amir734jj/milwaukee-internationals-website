@@ -33,7 +33,7 @@ router.post('/email', function(req, res, next) {
           emailList = emailList.concat(_.pluck(retVal.students, "email"));
         }
 
-        // global.sendMailUtility(emailList, req.body);
+        global.sendMailUtility(emailList, req.body);
 
         res.redirect("/utility");
     });
