@@ -324,7 +324,7 @@ app.controller("studentListCtrl", ["$scope", "$http", function($scope, $http) {
 
       doc.setFont('courier');
 
-      doc.setFontSize(11);
+      doc.setFontSize(10);
 
       var subsetAttr = function(attrList, obj) {
         return attrList.reduce(function(o, k) {
@@ -338,7 +338,8 @@ app.controller("studentListCtrl", ["$scope", "$http", function($scope, $http) {
         temparray = students.slice(i, i + chunk);
 
         var str = stringTable.create(temparray.map(function(student) {
-          return subsetAttr(["fullname", "country", "email", "university", "major", "attendance"], student);
+          student.fullname = student.fullname.substring(0, 30);
+          return subsetAttr(["fullname", "country", "email", "university", "attendance"], student);
         }));
 
         doc.text(20, 20, str);

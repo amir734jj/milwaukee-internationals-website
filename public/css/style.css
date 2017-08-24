@@ -63,6 +63,14 @@ a {
   padding: 3px !important;
 }
 
+.info-card {
+  margin: 0px;
+}
+
+.info-card-header {
+  padding: 0px;
+}
+
 p.banner-item {
   font-weight: 300 !important;
 }

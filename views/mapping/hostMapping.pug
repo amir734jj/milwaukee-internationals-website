@@ -20,10 +20,10 @@ block content
         .panel-body
           .container-fluid
             .row
-              .panel.panel-default.col-xl-4.col-lg-6.col-md-6.col-sm-12(ng-repeat="host in hostsBucket")
+              .panel.panel-default.info-card.col-xl-4.col-lg-6.col-md-6.col-sm-12(ng-repeat="host in hostsBucket")
                 .row
                   .col-sm-5
-                    h4.panel-heading
+                    h4.panel-heading.info-card-header
                       | {{host.fullname}}
                       .small
                         | (capacity = {{host.maxGuests}}})
