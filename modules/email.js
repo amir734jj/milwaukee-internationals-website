@@ -76,10 +76,10 @@ module.exports = function(smtpTransport, rootURL) {
         subject: "Tour of Milwaukee - Assigned Students",
         text: "Re Tour of Milwaukee",
         html: _.template("                                                      \
-        <p> This is an automatically generated email. </p>                      \
-        <p> ----------------------------------------- </p>                      \
+        <p> **This is an automatically generated email** </p>                      \
         <br>                                                                    \
-        <p> Your Driver ID: <%= driver.displayId %></p>                         \
+        <p> Hello <%= driver.fullname %>,</p>                         \
+        <p> Your Driver ID:<strong> <%= driver.displayId %></strong></p>                         \
         <ul>                                                                    \
         <% _.each(students, function(student){ %>                               \
             <li><%= student.fullname %> (<%= student.country %>)</li>           \
