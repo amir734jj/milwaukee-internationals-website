@@ -81,7 +81,7 @@ router.get('/delete/:id', function(req, res, next) {
     router.userCtrl.deleteUser({
       userId: req.params.id
     }, function() {
-      if (req.session.user.userId === req.params.userId) {
+      if (req.session.user.userId === req.params.id) {
         res.redirect("/user/logout");
       } else {
         res.redirect("/user");

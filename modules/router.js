@@ -1,4 +1,6 @@
 var routes = function(app, databaseModels, db) {
+  var redirects = require("../constants/redirects.json");
+
   var indexRouter = require('../routes/index'); // index page
   var userRouter = require('../routes/user'); // user page
   var studentRouter = require('../routes/student'); // student page
@@ -6,8 +8,7 @@ var routes = function(app, databaseModels, db) {
   var tourRouter = require('../routes/tour'); // mapping page
   var driverMappingRouter = require('../routes/mappingDriver'); // mapping page
   var hostMappingRouter = require('../routes/mappingHost'); // mapping page
-
-  var redirects = require("../constants/redirects.json");
+  var utilityRouter = require('../routes/utility'); // utility page
 
   var userCtrl = require('../models/userCtrl')(databaseModels.userModel, db, [userRouter]);
   var studentCtrl = require('../models/studentCtrl')(databaseModels, db, [studentRouter]);
@@ -15,6 +16,7 @@ var routes = function(app, databaseModels, db) {
   var driverMappingCtrl = require('../models/driverMappingCtrl')(databaseModels, db, [driverMappingRouter, hostMappingRouter]);
   var hostMappingCtrl = require('../models/hostMappingCtrl')(databaseModels, db, [driverMappingRouter, hostMappingRouter]);
   var tourCtrl = require('../models/tourCtrl')(databaseModels.studentModel, db, [tourRouter]);
+  var utilityCtrl = require('../models/utilityCtrl')(databaseModels, db, [utilityRouter]);
 
   /* order is important here */
   app.use(function(req, res, next) {
@@ -35,6 +37,7 @@ var routes = function(app, databaseModels, db) {
   app.use('/student', studentRouter);
   app.use('/person', personRouter);
   app.use('/tour', tourRouter);
+  app.use('/utility', utilityRouter);
 
   return this;
 };

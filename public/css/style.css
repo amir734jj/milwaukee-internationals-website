@@ -74,6 +74,10 @@ p.banner-item {
   }
 }
 
+.note-group-image-url{
+  padding: 20px;
+}
+
 .container {
   width: 90%;
 }
@@ -84,6 +88,10 @@ p.banner-item {
 
 .jumbotron {
   background: white;
+}
+
+.note-group-select-from-files {
+  display: none;
 }
 
 .big-checkbox>input {

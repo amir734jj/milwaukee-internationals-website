@@ -195,6 +195,8 @@ app.directive("jqPluginsDirective", ["$timeout", "$window", function($timeout, $
           }
         });
 
+        $('.summernote').summernote();
+
       });
     }
   };

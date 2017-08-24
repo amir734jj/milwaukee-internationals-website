@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+  .container.page-header
+    h2.text-danger.text-center
+      | Email service
+
+  form.form-horizontal(action="/utility/email" method="post")
+
+    .form-group
+      label.control-label.col-sm-3(for='subject') Subject:
+      .col-sm-9
+        .checkbox
+          label
+            input(type='checkbox', value='students')
+            | Students
+        .checkbox
+          label
+            input(type='checkbox', value='drivers')
+            | Drivers
+        .checkbox
+          label
+            input(type='checkbox', value='hosts')
+            | Hosts
+        .checkbox
+          label
+            input(type='checkbox', value='users')
+            | Users
+
+    .form-group
+      label.control-label.col-sm-3(for='subject') Subject:
+      .col-sm-9
+        input#subject.form-control(type='text', name='subject', placeholder='Enter your subject', required)
+          
+    .form-group
+      label.control-label.col-sm-3(for='text') Text:
+      .col-sm-9
+        textarea#text.form-control.summernote(type='text', name='text', placeholder='Enter text', rows='5', required)
+
+    .form-group
+      .col-sm-offset-3.col-sm-10
+        button.btn.btn-primary(class=btn-lg  type='submit') Send email

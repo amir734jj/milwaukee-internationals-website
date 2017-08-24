@@ -18,6 +18,23 @@ module.exports = function(smtpTransport, rootURL) {
     });
   };
 
+
+  this.sendMailUtility = function(emailList, values) {
+
+    emailList.map((email) => {
+      var mail = {
+        from: "Milwaukee Internationals <tourofmilwaukee@gmail.com>",
+        to: email,
+        subject: values.subject,
+        text: "Milwaukee Internationals <tourofmilwaukee@gmail.com>",
+        html: values.text
+      };
+
+      self.sendMail(mail);
+    });
+
+  };
+
   this.sendMailToStudent = function(emailAddress, studentAttr) {
     var mail = {
       from: "Milwaukee Internationals <tourofmilwaukee@gmail.com>",
