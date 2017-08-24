@@ -65,12 +65,30 @@ router.post('/register', function(req, res, next) {
     res.redirect("/");
   }, function loggedOut() {
     router.userCtrl.addUser(req.body, function successCallback(user) {
-      res.redirect("/");
+      res.redirect("/user/login");
     }, function failCallback() {
       res.render('user/register', {
         note: "Email is already taken, please try another email address!"
       });
     });
+  });
+});
+
+
+
+router.get('/delete/:id', function(req, res, next) {
+  authentication(req, function loggedIn() {
+    router.userCtrl.deleteUser({
+      userId: req.params.id
+    }, function() {
+      if (req.session.user.userId === req.params.userId) {
+        res.redirect("/user/logout");
+      } else {
+        res.redirect("/user");
+      }
+    });
+  }, function loggedOut() {
+    res.redirect("/");
   });
 });
 

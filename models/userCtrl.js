@@ -44,6 +44,27 @@ module.exports = function(userModel, db, injectTo) {
       userModel.findAll().then((users) => {
         callback(users);
       });
+    },
+    deleteUser: function(attr, callback) {
+      userModel.findOne({
+        where: {
+          userId: attr.userId
+        }
+      }).then((user) => {
+        userModel.destroy({
+            where: {
+                userId: attr.userId
+            }
+        }).then((nrows) => {
+            userModel.destroy({
+                where: {
+                    userId: attr.userId
+                }
+            }).then((nrows) => {
+                callback(user);
+            });
+        });
+      });
     }
   };
 

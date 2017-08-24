@@ -6,8 +6,11 @@ block content
       tr
         th Fullname
         th Email
+        th.hidden-xs Action
     tbody
       each user in users
         tr
           td= user.firstName + " " + user.lastName
           td= user.email
+          td.hidden-xs
+            a.btn.btn-danger.delete(href='user/delete/' + user.userId) delete
