@@ -420,7 +420,7 @@ app.controller("hostListCtrl", ["$scope", "$http", function($scope, $http) {
         temparray = hosts.slice(i, i + chunk);
 
         var str = stringTable.create(temparray.map(function(host) {
-          return subsetAttr(["fullname", "email", "phone", "maxGuests", "preference", "address"], host);
+          return subsetAttr(["fullname", "email", "phone", "maxGuests", "address"], host);
         }));
 
         if (i === 0) {
