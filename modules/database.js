@@ -117,6 +117,9 @@ module.exports = function(db, sequelize) {
     }
   }, config);
 
+
+  // DO NOT TOUCH !!!
+
   db.sync({
     force: false
   });
