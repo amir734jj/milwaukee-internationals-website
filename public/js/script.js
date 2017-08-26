@@ -61,7 +61,7 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
 
 
       driversBucket.map(function(driver, index) {
-        var str = "Driver: " + driver.fullname + " [ID: " + driver.personId + "]" +  " ( available: " + (driver.totalSeats - driver.students.length) + " )" + "\n\n";
+        var str = "Driver: " + driver.fullname + " [ID: " + driver.displayId + "]" +  " ( available: " + (driver.totalSeats - driver.students.length) + " )" + "\n\n";
 
         if (driver.host) {
           str += "Host Name:" + driver.host.fullname + "\n";
@@ -382,7 +382,7 @@ app.controller("driverListCtrl", ["$scope", "$http", function($scope, $http) {
         temparray = drivers.slice(i, i + chunk);
 
         var str = stringTable.create(temparray.map(function(driver) {
-          return subsetAttr(["fullname", "email", "phone", "needNavigator", "totalSeats"], driver);
+          return subsetAttr(["displayId", "fullname", "email", "phone", "totalSeats"], driver);
         }));
 
         if (i === 0) {
