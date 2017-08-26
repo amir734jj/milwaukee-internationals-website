@@ -61,7 +61,7 @@ app.controller("driverMappingCtrl", ["$scope", "$http", "$window", function($sco
 
 
       driversBucket.map(function(driver, index) {
-        var str = "Driver: " + driver.fullname + " ( available: " + (driver.totalSeats - driver.students.length) + " )" + "\n\n";
+        var str = "Driver: " + driver.fullname + "[ID: " + driver.personId + "]" +  " ( available: " + (driver.totalSeats - driver.students.length) + " )" + "\n\n";
 
         if (driver.host) {
           str += "Host Name:" + driver.host.fullname + "\n";
