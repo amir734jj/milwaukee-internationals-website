@@ -11,6 +11,7 @@ var sequelizeStore = require('connect-session-sequelize')(session.Store);
 var hash = require('sha1');
 var expressBundles = require('express-bundles');
 var mailer = require('nodemailer');
+var smtpPool = require('nodemailer-smtp-pool');
 
 var app = express();
 
@@ -25,7 +26,14 @@ var smtpTransport = mailer.createTransport({
         // do not fail on invalid certs
         rejectUnauthorized: false
     },
-    secure: true
+    secure: true,
+    pool: true,
+    // use up to 2 parallel connections, default is 5
+    maxConnections: 1,
+    // do not send more than 5 messages per connection, default is 100
+    maxMessages: 1000,
+    // no not send more than 5 messages in a second, default is no limit
+    rateLimit: true
 });
 
 var rootURL = "http://milwaukee-internationals.herokuapp.com";

@@ -14,7 +14,7 @@ module.exports = function(smtpTransport, rootURL) {
       console.log(response);
       console.log("##########---EMAIL---###########");
 
-      smtpTransport.close();
+      // smtpTransport.close();
     });
   };
 
