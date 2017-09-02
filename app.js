@@ -11,7 +11,6 @@ var sequelizeStore = require('connect-session-sequelize')(session.Store);
 var hash = require('sha1');
 var expressBundles = require('express-bundles');
 var mailer = require('nodemailer');
-var smtpPool = require('nodemailer-smtp-pool');
 
 var app = express();
 
