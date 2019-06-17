@@ -40,22 +40,23 @@ global.mailService = require('./modules/email.js')(smtpTransport, rootURL);
 
 var db;
 
-// if (app.settings.env === "development") {
-//     // initialize database with SQLite
-//     db = new sequelize("database", "username", "password", {
-//         host: "localhost",
-//         dialect: "sqlite",
-//         pool: {
-//             max: 1,
-//             min: 0,
-//             idle: 10000
-//         },
-//         storage: "./database/db.sqlite",
-//         logging: false
-//     });
-// } else if (app.settings.env === "production") {
+if (app.settings.env === "development") {
+    // initialize database with SQLite
+    db = new sequelize("database", "username", "password", {
+        host: "localhost",
+        dialect: "sqlite",
+        pool: {
+            max: 1,
+            min: 0,
+            idle: 10000
+        },
+        storage: "./database/db.sqlite",
+        logging: false
+    });
+} else if (app.settings.env === "production") {
     // initialize database with postgres
-// }
+    db = process.env["JAWSDB_URL"];
+}
 
 var databaseModels = require('./modules/database.js')(db, sequelize);
 
